@@ -20,6 +20,7 @@ tasks {
 }
 
 dependencies {
+	implementation(kotlin("stdlib"))
 }
 
 tasks.withType<Test> {

@@ -7,10 +7,10 @@ data class ArticleOverview(
         val url: Url
 )
 
-data class Name(val name: String)
+data class Name(val value: String)
 
-data class Description(val description: String)
+data class Description(val value: String)
 
-data class Category(val category: String)
+data class Category(val value: String)
 
-data class Url(val url: String)
+data class Url(val value: String)
