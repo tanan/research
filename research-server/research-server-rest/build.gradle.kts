@@ -32,7 +32,10 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation(project(":research-server-domain"))
+	implementation(project(":research-server-driver"))
+	implementation(project(":research-server-gateway"))
 	implementation(project(":research-server-usecase"))
+	implementation(project(":research-server-port"))
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}

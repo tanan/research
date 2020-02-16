@@ -1,6 +1,7 @@
 package com.tanan.researchserver.rest.resources
 
 import com.tanan.researchserver.domain.Id
+import com.tanan.researchserver.rest.jsons.article.ArticleJson
 import com.tanan.researchserver.rest.jsons.article.ArticleOverviewJson
 import com.tanan.researchserver.rest.jsons.article.toJson
 import com.tanan.researchserver.usecase.article.ArticleUseCase
@@ -21,6 +22,14 @@ class ArticleHandler(private val articleUseCase: ArticleUseCase) {
                             .status(200)
                             .body(Mono.just(it.toJson()), ArticleOverviewJson::class.java)
                     }
+
+    fun getArticle(request: ServerRequest): Mono<ServerResponse> =
+        request.pathVariable("id")
+                .let { articleUseCase.getArticle(Id(it)) }
+                .let { ServerResponse
+                        .status(200)
+                        .body(Mono.just(it.toJson()), ArticleJson::class.java)
+                }
 }
 
 @Configuration
@@ -29,6 +38,7 @@ class ArticleRouter(private val handler: ArticleHandler) {
     fun articleRoutes() = router {
         "/v1/articles/{id}".nest {
             GET("/overview", handler::getArticleOverview)
+            GET("/content", handler::getArticle)
         }
     }
 }

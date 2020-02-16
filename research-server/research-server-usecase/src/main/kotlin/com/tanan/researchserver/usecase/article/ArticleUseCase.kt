@@ -6,9 +6,12 @@ import com.tanan.researchserver.port.article.ArticlePort
 import org.springframework.stereotype.Component
 
 @Component
-//class ArticleUseCase() {
-//    fun getArticleOverview(id: Id): ArticleOverview = ArticleOverview(Name(""), Description(""), Category(""), Url(""))
-//}
 class ArticleUseCase(private val articlePort: ArticlePort) {
-    fun getArticleOverview(id: Id): ArticleOverview = articlePort.getArticleOverview(id)
+    fun getArticleOverview(id: Id): ArticleOverview {
+        return articlePort.getArticleOverview(id)
+    }
+
+    fun getArticle(id: Id): Article {
+        return articlePort.getArticle(id)
+    }
 }
