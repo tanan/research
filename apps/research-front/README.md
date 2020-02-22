@@ -1,4 +1,4 @@
-# research-front
+# vue-material
 
 ## Project setup
 ```
