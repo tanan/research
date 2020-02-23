@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { RepositoryFactory } from '@/repositories/RepositoryFactory'
 const ArticleRepository = RepositoryFactory.get('articles')
 
@@ -33,32 +32,22 @@ export default {
     
   },
   computed: {
-    ...mapState(['article']),
   },
   data () {
     return {
-      articles: [
-        {
-          title: "タイトル1",
-          imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-          content: "コンテンツが流れています"
-        },
-        {
-          title: "タイトル2",
-          imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-          content: "コンテンツが流れています"
-        },
-        {
-          title: "タイトル1",
-          imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-          content: "コンテンツが流れています"
-        },
-        {
-          title: "タイトル2",
-          imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-          content: "コンテンツが流れています"
-        }
-      ]
+      // articles: [
+      //   {
+      //     title: "タイトル1",
+      //     imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+      //     content: "コンテンツが流れています"
+      //   },
+      //   {
+      //     title: "タイトル2",
+      //     imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+      //     content: "コンテンツが流れています"
+      //   }
+      // ]
+      articles: this.fetchArticles()
     }
   },
   methods: {
@@ -67,7 +56,7 @@ export default {
     },
     async fetchArticles () {
       const { data } = await ArticleRepository.get()
-      this.articles = data.articles
+      return data.articles
     }
   }
 }

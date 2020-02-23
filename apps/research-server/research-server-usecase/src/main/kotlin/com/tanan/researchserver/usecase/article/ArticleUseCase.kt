@@ -11,7 +11,7 @@ class ArticleUseCase(private val articlePort: ArticlePort) {
         return articlePort.getArticleOverview(id)
     }
 
-    fun getArticle(id: Id): Article {
-        return articlePort.getArticle(id)
-    }
+    fun getArticle(id: Id): Article = articlePort.getArticle(id)
+
+    fun getLatestArticles(size: Int): ArticlesOverview = articlePort.getLatestArticlesOverview(size)
 }

@@ -3,6 +3,7 @@ package com.tanan.researchserver.rest.resources
 import com.tanan.researchserver.domain.Id
 import com.tanan.researchserver.rest.jsons.article.ArticleJson
 import com.tanan.researchserver.rest.jsons.article.ArticleOverviewJson
+import com.tanan.researchserver.rest.jsons.article.ArticlesOverviewJson
 import com.tanan.researchserver.rest.jsons.article.toJson
 import com.tanan.researchserver.usecase.article.ArticleUseCase
 import org.springframework.context.annotation.Bean
@@ -30,12 +31,21 @@ class ArticleHandler(private val articleUseCase: ArticleUseCase) {
                         .status(200)
                         .body(Mono.just(it.toJson()), ArticleJson::class.java)
                 }
+
+    fun getArticles(request: ServerRequest): Mono<ServerResponse> =
+            request
+                    .let { articleUseCase.getLatestArticles(10) }
+                    .let { ServerResponse
+                            .status(200)
+                            .body(Mono.just(it.toJson()), ArticlesOverviewJson::class.java)
+                    }
 }
 
 @Configuration
 class ArticleRouter(private val handler: ArticleHandler) {
     @Bean
     fun articleRoutes() = router {
+        GET("/v1/articles", handler::getArticles)
         "/v1/articles/{id}".nest {
             GET("/overview", handler::getArticleOverview)
             GET("/content", handler::getArticle)
