@@ -1,5 +1,6 @@
 package com.tanan.researchserver.gateway.article
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.tanan.researchserver.domain.Id
 import com.tanan.researchserver.domain.article.*
 import com.tanan.researchserver.driver.article.contentful.ContentfulApi
@@ -8,6 +9,7 @@ import com.tanan.researchserver.driver.article.contentful.jsons.ArticlesOverview
 import com.tanan.researchserver.driver.article.database.ArticleOverviewDriver
 import com.tanan.researchserver.port.article.ArticlePort
 import org.springframework.stereotype.Component
+import java.util.*
 
 @Component
 class ArticleGateway(private val articleOverviewDriver: ArticleOverviewDriver,
@@ -24,27 +26,27 @@ class ArticleGateway(private val articleOverviewDriver: ArticleOverviewDriver,
     override fun getArticle(id: Id): Article =
         toArticle(contentfulApi.getContent(id.toString()))
 
-    override fun getLatestArticlesOverview(size: Int): ArticlesOverview =
-        toArticlesOverview(contentfulApi.getArticlesOverview(size))
+    override fun getLatestArticles(size: Int): String =
+        jacksonObjectMapper().writeValueAsString(contentfulApi.getArticlesOverview(size))
 
-    private fun toArticlesOverview(articlesOverviewJson: ArticlesOverviewJson) =
-        articlesOverviewJson.items
-                .map {
-                    Pair(it.fields.thumbnail.sys.id, it.fields.title)
-                }.map {
-                    val id = it.first
-                    val title = it.second
-                    articlesOverviewJson.includes
-                            .map { j ->
-                                val t = j.Asset.first { k -> k.sys.id === id }
-                                ArticleOverview(
-                                        name = Name(title),
-                                        category = Category(""),
-                                        thumbnail = Thumbnail(t.fields.file.url),
-                                        url = Url("")
-                                )
-                            }
-                }[0].let(::ArticlesOverview)
+//    private fun toArticlesOverview(articlesOverviewJson: ArticlesOverviewJson) =
+//        articlesOverviewJson.items
+//                .map {
+//                    Pair(it.fields.thumbnail.sys.id, it.fields.title)
+//                }.map {
+//                    val id = it.first
+//                    val title = it.second
+//                    articlesOverviewJson.includes
+//                            .map { j ->
+//                                val t = j.Asset.first { k -> k.sys.id === id }
+//                                ArticleOverview(
+//                                        name = Name(title),
+//                                        category = Category(""),
+//                                        thumbnail = Thumbnail(t.fields.file.url),
+//                                        url = Url("")
+//                                )
+//                            }
+//                }[0].let(::ArticlesOverview)
 
     private fun toArticle(articleJson: ArticleJson) =
             Article(

@@ -11,3 +11,8 @@ data class Fields(
         val title: String,
         val content: String
 )
+
+
+data class LatestArticles(
+        val data: String
+)

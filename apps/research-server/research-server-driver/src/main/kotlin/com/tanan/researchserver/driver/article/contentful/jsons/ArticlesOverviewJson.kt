@@ -5,32 +5,41 @@ data class ArticlesOverviewJson(
         val total: Int,
         val skip: Int,
         val limit: Int,
-        val items: List<ItemJson>,
-        val includes: List<IncludeJson>
+        val items: String,
+        val includes: String
 )
 
-data class ItemJson(
-        val fields: ItemFieldsJson
-)
+//data class ArticlesOverviewJson(
+//        val sys: String,
+//        val total: Int,
+//        val skip: Int,
+//        val limit: Int,
+//        val items: List<ItemJson>,
+//        val includes: List<IncludeJson>
+//)
 
-data class ItemFieldsJson(
-        val title: String,
-        val thumbnail: ItemFieldsThumbnailJson
-)
-
-data class ItemFieldsThumbnailJson(
-        val sys: ItemFieldsThumbnailSysJson
-)
-
-data class ItemFieldsThumbnailSysJson(
-        val type: String,
-        val linkType: String,
-        val id: String
-)
-
-data class IncludeJson(
-        val Asset: List<IncludeAssetJson>
-)
+//data class ItemJson(
+//        val fields: ItemFieldsJson
+//)
+//
+//data class ItemFieldsJson(
+//        val title: String,
+//        val thumbnail: ItemFieldsThumbnailJson
+//)
+//
+//data class ItemFieldsThumbnailJson(
+//        val sys: ItemFieldsThumbnailSysJson
+//)
+//
+//data class ItemFieldsThumbnailSysJson(
+//        val type: String,
+//        val linkType: String,
+//        val id: String
+//)
+//
+//data class IncludeJson(
+//        val Asset: List<IncludeAssetJson>
+//)
 
 data class IncludeAssetJson(
         val sys: IncludeAssetSysJson,

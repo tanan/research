@@ -1,10 +1,7 @@
 package com.tanan.researchserver.rest.resources
 
 import com.tanan.researchserver.domain.Id
-import com.tanan.researchserver.rest.jsons.article.ArticleJson
-import com.tanan.researchserver.rest.jsons.article.ArticleOverviewJson
-import com.tanan.researchserver.rest.jsons.article.ArticlesOverviewJson
-import com.tanan.researchserver.rest.jsons.article.toJson
+import com.tanan.researchserver.rest.jsons.article.*
 import com.tanan.researchserver.usecase.article.ArticleUseCase
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -37,7 +34,7 @@ class ArticleHandler(private val articleUseCase: ArticleUseCase) {
                     .let { articleUseCase.getLatestArticles(10) }
                     .let { ServerResponse
                             .status(200)
-                            .body(Mono.just(it.toJson()), ArticlesOverviewJson::class.java)
+                            .body(Mono.just(it), String::class.java)
                     }
 }
 

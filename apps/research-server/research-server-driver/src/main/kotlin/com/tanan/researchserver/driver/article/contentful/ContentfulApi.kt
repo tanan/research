@@ -5,6 +5,8 @@ import com.tanan.researchserver.driver.article.contentful.jsons.ArticlesOverview
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
+import java.util.*
+import kotlin.collections.HashMap
 
 @Component
 class ContentfulApi(private val config: ContentfulApiConfig) {
@@ -19,7 +21,7 @@ class ContentfulApi(private val config: ContentfulApiConfig) {
     fun getArticlesOverview(size: Int) =
             restTemplate.getForEntity(
                     "$endpoint/entries/?select=fields.title,fields.thumbnail&content_type=articles&limit=$size&access_token=${config.accessToken}",
-                    ArticlesOverviewJson::class.java).body!!
+                    HashMap::class.java).body!!
 }
 
 @Component
