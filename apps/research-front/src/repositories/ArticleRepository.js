@@ -8,5 +8,8 @@ export default {
   },
   getArticle(articleId) {
     return Repository.get(`${resource}/${articleId}`)
+  },
+  getArticlesOverview() {
+    return Repository.get(`${resource}`+"?size=10")
   }
 }

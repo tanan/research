@@ -9,10 +9,10 @@
           <v-row>
             <v-col class="pt-6 pr-8" md="6" v-for="(article, index) in articles" :key="index">
               <v-card min-height="340px">
-                <v-img class="white--text align-end" height="180px" :src="article.imgurl">
+                <v-img class="white--text align-end" height="180px" :src="article.thumbnailUrl">
                   <v-card-title>{{ article.title }}</v-card-title>
                 </v-img>
-                <v-card-text>{{ article.content }}</v-card-text>
+                <v-card-text>{{ article.description }}</v-card-text>
               </v-card>
             </v-col>
           </v-row>
@@ -35,18 +35,6 @@ export default {
   },
   data () {
     return {
-      // articles: [
-      //   {
-      //     title: "タイトル1",
-      //     imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-      //     content: "コンテンツが流れています"
-      //   },
-      //   {
-      //     title: "タイトル2",
-      //     imgurl: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
-      //     content: "コンテンツが流れています"
-      //   }
-      // ]
       articles: this.fetchArticles()
     }
   },
@@ -55,8 +43,26 @@ export default {
       return ""
     },
     async fetchArticles () {
-      const { data } = await ArticleRepository.get()
-      return data.articles
+      const res = await ArticleRepository.get()
+      if (res.status === 200) {
+        console.log(res.data)
+        let data = res.data
+        let items = data.items
+        let asset = data.includes.Asset
+        let articles = items.map(l => {
+          let r = {}
+          r.title = l.fields.title
+          if (l.fields.thumbnail) {
+            r.thumbnailId = l.fields.thumbnail.sys.id
+            r.thumbnailUrl = "https:" + asset.find(e => e.sys.id === r.thumbnailId).fields.file.url
+          }
+          r.description = l.fields.description
+          r.landingUrl = "https://www.example.com"
+          return r
+        })
+        console.log(articles)
+        this.articles = articles
+      }
     }
   }
 }
