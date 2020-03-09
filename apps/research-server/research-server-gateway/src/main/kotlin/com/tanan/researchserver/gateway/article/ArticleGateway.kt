@@ -23,8 +23,8 @@ class ArticleGateway(private val articleOverviewDriver: ArticleOverviewDriver,
     private fun toArticleOverview(entity: com.tanan.researchserver.driver.article.database.entity.ArticleOverview) =
             ArticleOverview(Name(entity.name), Category(entity.category), Thumbnail(""), Url(entity.url))
 
-    override fun getArticle(id: Id): Article =
-        toArticle(contentfulApi.getContent(id.toString()))
+    override fun getArticle(id: Id): String =
+        jacksonObjectMapper().writeValueAsString(contentfulApi.getContent(id.value))
 
     override fun getLatestArticles(size: Int): String =
         jacksonObjectMapper().writeValueAsString(contentfulApi.getArticlesOverview(size))

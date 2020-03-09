@@ -1,29 +1,7 @@
-# vue-material
+# research_front
 
-## Project setup
-```
-yarn install
-```
+A web app that uses [AngularDart](https://angulardart.dev) and
+[AngularDart Components](https://angulardart.dev/components).
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Created from templates made available by Stagehand under a BSD-style
+[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).

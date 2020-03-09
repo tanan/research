@@ -1,0 +1,20 @@
+@charset 'UTF-8';
+
+@import 'package:research_front/src/views/styles/variables';
+
+.content {
+  display: flex;
+
+  .main-content {
+    display: flex;
+    width: 80%;
+    margin: auto;
+
+    .title {
+      margin-left: 32px;
+      margin-top: 32px;
+      font-size: 18px;
+      color: $color-font-black;
+    }
+  }
+}

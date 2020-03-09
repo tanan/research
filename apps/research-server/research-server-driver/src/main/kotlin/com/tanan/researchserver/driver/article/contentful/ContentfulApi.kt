@@ -16,11 +16,11 @@ class ContentfulApi(private val config: ContentfulApiConfig) {
     fun getContent(articleId: String) =
         restTemplate.getForEntity(
                 "$endpoint/entries/$articleId?access_token=${config.accessToken}",
-                ArticleJson::class.java).body!!
+                HashMap::class.java).body!!
 
     fun getArticlesOverview(size: Int) =
             restTemplate.getForEntity(
-                    "$endpoint/entries/?select=fields.title,fields.description,fields.thumbnail&content_type=articles&limit=$size&access_token=${config.accessToken}",
+                    "$endpoint/entries/?select=sys.id,fields.title,fields.description,fields.thumbnail&content_type=articles&limit=$size&access_token=${config.accessToken}",
                     HashMap::class.java).body!!
 }
 

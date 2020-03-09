@@ -26,7 +26,7 @@ class ArticleHandler(private val articleUseCase: ArticleUseCase) {
                 .let { articleUseCase.getArticle(Id(it)) }
                 .let { ServerResponse
                         .status(200)
-                        .body(Mono.just(it.toJson()), ArticleJson::class.java)
+                        .body(Mono.just(it), String::class.java)
                 }
 
     fun getArticles(request: ServerRequest): Mono<ServerResponse> =

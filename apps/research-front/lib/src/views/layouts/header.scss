@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+@import 'package:research_front/src/views/styles/variables';
+
+:host {
+  display: flex;
+  height: 64px;
+  padding: 0 16px;
+  background: #fff;
+  align-items: center;
+  color: #333;
+}
+
+.logo {
+  color: #000;
+  border-radius: 4px;
+  padding: 8px 24px;
+  line-height: 1;
+}
+
+.search-wrapper {
+  flex-grow: 1;
+
+  search {
+    display: block;
+    width: 560px;
+    margin: auto;
+  }
+}
+
+.actions {
+  display: inline-flex;
+}
+
+.menu {
+  top: 105%;
+  right: 0;
+  background: #fff;
+
+  .menu-item {
+    display: flex;
+    padding: 8px 24px;
+    align-items: center;
+  }
+
+  material-icon {
+    margin-right: 5px;
+  }
+
+  span {
+    line-height: 1;
+  }
+}

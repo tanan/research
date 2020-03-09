@@ -7,8 +7,8 @@
             <h2>新着記事</h2>
           </div>
           <v-row>
-            <v-col class="pt-6 pr-8" md="6" v-for="(article, index) in articles" :key="index">
-              <v-card min-height="340px">
+            <v-col class="pt-6 pr-8" md="5" v-for="(article, index) in articles" :key="index">
+              <v-card tile min-height="340px" :href="article.landingUrl">
                 <v-img class="white--text align-end" height="180px" :src="article.thumbnailUrl">
                   <v-card-title>{{ article.title }}</v-card-title>
                 </v-img>
@@ -57,7 +57,7 @@ export default {
             r.thumbnailUrl = "https:" + asset.find(e => e.sys.id === r.thumbnailId).fields.file.url
           }
           r.description = l.fields.description
-          r.landingUrl = "https://www.example.com"
+          r.landingUrl = "/article/" + l.sys.id
           return r
         })
         console.log(articles)

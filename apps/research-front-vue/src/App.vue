@@ -16,7 +16,7 @@
         no-gutters
       >
         <v-col
-          class="primary lighten-2 py-4 text-center white--text"
+          class="grey darken-4 py-4 text-center white--text"
           cols="12"
         >
           {{ new Date().getFullYear() }} — <strong>RESEARCH</strong>
@@ -45,3 +45,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.v-application {
+  font-family: "M PLUS Rounded 1c" !important;
+}
+</style>

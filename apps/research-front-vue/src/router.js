@@ -10,7 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/ResearchTop.vue')
+      component: () => import('./views/ResearchTopView.vue')
+    },
+    {
+      path: '/article/:id',
+      name: 'article',
+      component: () => import('./views/ArticleView.vue')
     }
   ]
 })
