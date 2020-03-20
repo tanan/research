@@ -1,10 +1,10 @@
 
 import 'package:research_front/src/domain/system.dart';
-import 'package:research_front/src/views/state/system_state.dart';
+import 'package:research_front/src/views/state/system_viewstate.dart';
 
 class SystemPresenter {
 
-  final SystemState _state;
+  final SystemViewState _state;
 
   SystemPresenter(this._state);
 

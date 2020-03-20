@@ -1,4 +1,4 @@
-class SystemState {
+class SystemViewState {
 
   String path;
   String parameters;
