@@ -6,13 +6,27 @@ create table "research"."user" (
   id uuid primary key
   ,username text not null unique
   ,password text not null
-  ,name text not null
+  ,nickname text not null
 );
 
-create table "research"."article_overview" (
+create table "research"."article" (
   id text primary key
-  ,name text not null
+  ,title text not null
   ,description text not null
-  ,category text not null
-  ,url text not null unique
+  ,editor text not null
+  ,last_modified timestamp not null
+  ,thumbnail_url text not null
+);
+
+create table "research"."article_content" (
+  id text primary key
+  ,body text not null
+  ,foreign key (id) references research.article(id)
+);
+
+create table "research"."article_tag" (
+  id serial primary key
+  ,article_id text not null
+  ,tag text not null
+  ,foreign key (article_id) references research.article(id)
 );
