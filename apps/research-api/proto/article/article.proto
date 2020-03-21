@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package article;
+
+import "google/protobuf/timestamp.proto";
+
+service Article {
+    rpc FindArticle (ArticleRequest) returns (ArticleResponse) {}
+}
+
+message ArticleRequest {
+    string articleId = 1;
+}
+
+message ArticleResponse {
+    string articleId = 1;
+    string articleName = 2;
+    string editor = 3;
+    google.protobuf.Timestamp lastModified = 4;
+	string thumbnail = 5;
+	string description = 6;
+}
