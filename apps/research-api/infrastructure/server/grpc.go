@@ -27,16 +27,16 @@ func (s *server) FindArticle(c context.Context, req *article.ArticleRequest) (*a
 	if err != nil {
 		return &article.ArticleResponse{}, err
 	}
-	t, err := ptypes.TimestampProto(res.LastModified)
+	t, err := ptypes.TimestampProto(res.ArticleOverview.LastModified)
 	if err != nil {
 		return &article.ArticleResponse{}, err
 	}
 	return &article.ArticleResponse{
 		ArticleId:    res.ArticleId,
-		ArticleName:  res.Title,
-		Editor:       res.Editor,
+		ArticleName:  res.ArticleOverview.Title,
+		Editor:       res.ArticleOverview.Editor,
 		LastModified: t,
-		Thumbnail:    res.Thumbnail,
-		Description:  res.Description,
+		Thumbnail:    res.ArticleOverview.Thumbnail,
+		Description:  res.ArticleOverview.Description,
 	}, nil
 }

@@ -15,6 +15,11 @@ type ArticleOutputPort interface {
 
 type ArticleResponse struct {
 	ArticleId    string
+	ArticleOverview ArticleOverview
+	Content string
+}
+
+type ArticleOverview struct {
 	Title        string
 	Editor       string
 	LastModified time.Time

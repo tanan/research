@@ -15,7 +15,7 @@ create table "research"."article" (
   ,description text not null
   ,editor text not null
   ,last_modified timestamp not null
-  ,thumbnail_url text not null
+  ,thumbnail text not null
 );
 
 create table "research"."article_content" (

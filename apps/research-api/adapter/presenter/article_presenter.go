@@ -8,9 +8,17 @@ import (
 func (p *GRPCPresenter) FindArticle(article domain.Article) (*server.ArticleResponse, error) {
 	return &server.ArticleResponse{
 		ArticleId:    string(article.ArticleId),
-		Editor:       article.ArticleOverview.Editor,
-		LastModified: article.ArticleOverview.LastModified,
-		Thumbnail:    article.ArticleOverview.Thumbnail,
-		Description:  article.ArticleOverview.Description,
+		ArticleOverview: p.toArticleOverview(article.ArticleOverview),
+		Content: article.Content,
 	}, nil
+}
+
+func (p *GRPCPresenter) toArticleOverview(overview domain.ArticleOverview) server.ArticleOverview {
+	return server.ArticleOverview{
+		Title:        overview.Title,
+		Editor:       overview.Editor,
+		LastModified: overview.LastModified,
+		Thumbnail:    overview.Thumbnail,
+		Description:  overview.Description,
+	}
 }
