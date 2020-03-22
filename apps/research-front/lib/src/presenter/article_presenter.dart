@@ -10,6 +10,7 @@ class ArticlePresenter {
   void setArticle(Article article) {
     _state.articleId = article.id.id;
     _state.overview = _overview(article.articleOverview);
+    print(_state.articleId);
   }
 
   ArticleOverviewUnit _overview(ArticleOverview overview) =>

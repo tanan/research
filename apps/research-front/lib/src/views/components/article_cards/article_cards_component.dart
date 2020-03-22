@@ -25,14 +25,11 @@ class ArticleCardsComponent implements OnInit {
   // @Input()
   // List<Article> articles;
 
-  List<Article> articles = [
-    Article(ArticleId(''), ArticleOverview('editor', 'title', '2019-12-31', 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png', 'description'), 'body'),
-  ];  
+  ArticleViewState get article => _viewState;
 
   @override
   void ngOnInit() {
-    print('test');
-    _usecase.findArticle(ArticleId(''));
+    _usecase.findArticle(ArticleId('5qopcYbpSTaV7a1AIqzkSu'));
   }
   
 }

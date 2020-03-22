@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular/core.dart';
-import 'package:research_front/src/domain/article.dart';
+import 'package:research_front/src/views/state/article_viewstate.dart';
 
 @Component(
   selector: 'article-card',
@@ -14,11 +14,9 @@ import 'package:research_front/src/domain/article.dart';
 class ArticleCardComponent implements OnInit {
 
   @Input()
-  Article article;
+  ArticleViewState article;
 
   @override
-  void ngOnInit() {
-    // TODO: implement ngOnInit
-  }
+  void ngOnInit() {}
   
 }

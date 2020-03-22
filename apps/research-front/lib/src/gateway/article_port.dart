@@ -30,5 +30,5 @@ extension ArticleConverter on ArticleJson {
       '');
   
   ArticleOverview _toArticleOverview() =>
-    ArticleOverview(articleOverview.editor, articleOverview.title, articleOverview.lastModified, articleOverview.thumbnail, articleOverview.description);
+    ArticleOverview(editor, title, lastModified, thumbnail, description);
 }

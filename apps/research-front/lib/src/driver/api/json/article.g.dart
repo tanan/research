@@ -77,19 +77,24 @@ Map<String, dynamic> _$FieldsJsonToJson(FieldsJson instance) =>
 
 ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
   return ArticleJson(
-    json['id'] as String,
-    json['articleOverview'] == null
-        ? null
-        : ArticleOverviewJson.fromJson(
-            json['articleOverview'] as Map<String, dynamic>),
+    json['articleId'] as String,
+    json['editor'] as String,
+    json['articleName'] as String,
+    json['lastModified'] as String,
+    json['thumbnail'] as String,
+    json['description'] as String,
     json['content'] as String,
   );
 }
 
 Map<String, dynamic> _$ArticleJsonToJson(ArticleJson instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'articleOverview': instance.articleOverview,
+      'articleId': instance.id,
+      'editor': instance.editor,
+      'articleName': instance.title,
+      'lastModified': instance.lastModified,
+      'thumbnail': instance.thumbnail,
+      'description': instance.description,
       'content': instance.content,
     };
 

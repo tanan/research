@@ -48,11 +48,17 @@ class FieldsJson {
 
 @JsonSerializable()
 class ArticleJson {
+  @JsonKey(name: 'articleId')
   final String id;
-  final ArticleOverviewJson articleOverview;
+  final String editor;
+  @JsonKey(name: 'articleName')
+  final String title;
+  final String lastModified;
+  final String thumbnail;
+  final String description;
   final String content;
 
-  ArticleJson(this.id, this.articleOverview, this.content);
+  ArticleJson(this.id, this.editor, this.title, this.lastModified, this.thumbnail, this.description, this.content);
   factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);
 }
 
