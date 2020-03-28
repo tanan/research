@@ -1,8 +1,14 @@
-
 class ArticleViewState {
+  List<Article> articles = [];
+}
+
+
+class Article {
   String articleId;
   ArticleOverviewUnit overview;
   String content;
+
+  Article(this.articleId, this.overview, this.content);
 }
 
 class ArticleOverviewUnit {

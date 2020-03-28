@@ -29,7 +29,6 @@ import 'main.template.dart' as self;
   ClassProvider(ArticlePresenter),
   ClassProvider(ArticleViewState),
   ClassProvider(env.Location, useClass: env.HashBaseLocation),
-  ClassProvider(Article),
   ClassProvider(ApiClient),
   ClassProvider(BrowserClient),
   ClassProvider(ResearchApiURL),

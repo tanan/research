@@ -10,7 +10,7 @@ typedef Converter<T> = T Function(Map<String, dynamic> value);
 
 extension JSONParsing on Response {
   T asMap<T>(Converter<T> c) {
-    var value = json.decode(body) as Map<String, dynamic>;
+    var value = json.decode(utf8.decode(bodyBytes)) as Map<String, dynamic>;
     return c(value);
   }
 

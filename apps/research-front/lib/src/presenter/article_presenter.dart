@@ -1,4 +1,4 @@
-import 'package:research_front/src/domain/article.dart';
+import 'package:research_front/src/domain/article.dart' as d;
 import 'package:research_front/src/views/state/article_viewstate.dart';
 
 class ArticlePresenter {
@@ -7,13 +7,11 @@ class ArticlePresenter {
 
   ArticlePresenter(this._state);
 
-  void setArticle(Article article) {
-    _state.articleId = article.id.id;
-    _state.overview = _overview(article.articleOverview);
-    print(_state.articleId);
+  void setArticle(d.Article article) {
+    _state.articles.add(Article(article.id.id, _overview(article.articleOverview), null));
   }
 
-  ArticleOverviewUnit _overview(ArticleOverview overview) =>
+  ArticleOverviewUnit _overview(d.ArticleOverview overview) =>
     ArticleOverviewUnit(
       overview.editor,
       overview.title,

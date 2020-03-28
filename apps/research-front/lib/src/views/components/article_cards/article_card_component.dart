@@ -14,7 +14,7 @@ import 'package:research_front/src/views/state/article_viewstate.dart';
 class ArticleCardComponent implements OnInit {
 
   @Input()
-  ArticleViewState article;
+  Article article;
 
   @override
   void ngOnInit() {}
