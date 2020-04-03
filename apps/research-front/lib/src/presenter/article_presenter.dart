@@ -7,9 +7,8 @@ class ArticlePresenter {
 
   ArticlePresenter(this._state);
 
-  void setArticle(d.Article article) {
-    _state.articles.add(Article(article.id.id, _overview(article.articleOverview), null));
-  }
+  void showArticles(d.Articles articles) =>
+    _state.articles = articles.map((v) => Article(v.id.id, _overview(v.articleOverview), null));
 
   ArticleOverviewUnit _overview(d.ArticleOverview overview) =>
     ArticleOverviewUnit(

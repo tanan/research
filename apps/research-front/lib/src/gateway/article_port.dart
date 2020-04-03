@@ -6,6 +6,7 @@ import 'package:research_front/src/driver/api/json/article.dart';
 abstract class ArticlePort {
   // Future<Articles> findAll();
   Future<Article> find(ArticleId id);
+  Future<Articles> findLatest();
 }
 
 class ArticleGateway implements ArticlePort {
@@ -13,22 +14,29 @@ class ArticleGateway implements ArticlePort {
 
   ArticleGateway(this._client);
 
-  // @override
-  // Future<Articles> findAll() async =>
-  //   (await _client.getArticles().toArticles());
-
   @override
   Future<Article> find(ArticleId id) async =>
     (await _client.getArticle(id.id)).toArticle();
+
+  @override
+  Future<Articles> findLatest() async =>
+  (await _client.getArticles()).toArticles();
 }
 
-extension ArticleConverter on ArticleJson {
+extension on ArticlesJson {
+  Articles toArticles() {
+    articles.forEach((v) => print(v));
+    return Articles(articles.map((v) => v.toArticle()));
+  }
+}
+
+extension on ArticleJson {
   Article toArticle() =>
     Article(
-      ArticleId(id),
+      ArticleId(articleId),
       _toArticleOverview(),
       '');
   
   ArticleOverview _toArticleOverview() =>
-    ArticleOverview(editor, title, lastModified, thumbnail, description);
+    ArticleOverview(editor, articleName, lastModified, thumbnail, description);
 }

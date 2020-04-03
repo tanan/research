@@ -22,8 +22,8 @@ class ApiClient {
 
   Map<String, String> get _headers => mergeMaps([CONTENT_TYPE_JSON_UTF8]);
 
-  Future<ArticleJson> getArticles() async =>
-    _getAsMap(_url.latest(), (v) => ArticleJson.fromJson(v));
+  Future<ArticlesJson> getArticles() async =>
+    _getAsMap(_url.latest(), (v) => ArticlesJson.fromJson(v));
 
   Future<ArticleJson> getArticle(String id) async =>
     _getAsMap(_url.article(id), (v) => ArticleJson.fromJson(v));

@@ -26,7 +26,7 @@ class ArticleCardsComponent implements OnInit {
 
   @override
   void ngOnInit() {
-    _usecase.findArticle(d.ArticleId('5qopcYbpSTaV7a1AIqzkSu'));
+    _usecase.findLatestArticles();
   }
   
 }

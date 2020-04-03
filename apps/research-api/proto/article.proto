@@ -6,6 +6,11 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
 service Article {
+    rpc FindArticles (ArticlesRequest) returns (ArticlesResponse) {
+        option (google.api.http) = {
+            get: "/v1/articles"
+        };
+    }
     rpc FindArticle (ArticleRequest) returns (ArticleResponse) {
         option (google.api.http) = {
             get: "/v1/articles/{articleId}"
@@ -13,9 +18,11 @@ service Article {
     }
 }
 
-message ArticleRequest {
-    string articleId = 1;
-}
+message ArticlesRequest {}
+
+message ArticlesResponse { repeated ArticleResponse articles = 1; }
+
+message ArticleRequest { string articleId = 1; }
 
 message ArticleResponse {
     string articleId = 1;

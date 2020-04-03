@@ -12,8 +12,15 @@ class ArticleUsecase {
     await _article(id);
   }
 
+  Future<void> findLatestArticles() async {
+    var articles = await _port.findLatest();
+    _presenter.showArticles(articles);
+
+  }
+
   Future<void> _article(ArticleId id) async {
     var article = await _port.find(id);
-    _presenter.setArticle(article);
+    print(article);
+    // _presenter.setArticle(article);
   }
 }
