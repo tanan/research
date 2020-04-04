@@ -13,6 +13,18 @@ func (p *GRPCPresenter) FindArticle(article domain.Article) (*server.ArticleResp
 	}, nil
 }
 
+func (p *GRPCPresenter) FindArticles(articles domain.Articles) (*server.ArticlesResponse, error) {
+	var res server.ArticlesResponse
+	for _, v := range articles {
+		res = append(res, server.ArticleResponse{
+			ArticleId:       string(v.ArticleId),
+			ArticleOverview: p.toArticleOverview(v.ArticleOverview),
+			Content:         v.Content,
+		})
+	}
+	return &res, nil
+}
+
 func (p *GRPCPresenter) toArticleOverview(overview domain.ArticleOverview) server.ArticleOverview {
 	return server.ArticleOverview{
 		Title:        overview.Title,

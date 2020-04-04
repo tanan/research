@@ -18,3 +18,5 @@ type Article struct {
 	ArticleOverview ArticleOverview
 	Content         string
 }
+
+type Articles []Article

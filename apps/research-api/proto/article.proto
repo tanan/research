@@ -16,6 +16,11 @@ service Article {
             get: "/v1/articles/{articleId}"
         };
     }
+    rpc FindArticleContent (ArticleRequest) returns (ArticleResponse) {
+        option (google.api.http) = {
+            get: "/v1/articles/{articleId}/content"
+        };
+    }
 }
 
 message ArticlesRequest {}
@@ -31,4 +36,5 @@ message ArticleResponse {
     google.protobuf.Timestamp lastModified = 4;
 	string thumbnail = 5;
 	string description = 6;
+    string content = 7;
 }

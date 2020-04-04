@@ -7,11 +7,16 @@ import (
 
 type ArticleInputPort interface {
 	FindArticle(id domain.ArticleId) (*ArticleResponse, error)
+	FindArticles() (*ArticlesResponse, error)
+	FindArticleContent(id domain.ArticleId) (*ArticleResponse, error)
 }
 
 type ArticleOutputPort interface {
 	FindArticle(article domain.Article) (*ArticleResponse, error)
+	FindArticles(articles domain.Articles) (*ArticlesResponse, error)
 }
+
+type ArticlesResponse []ArticleResponse
 
 type ArticleResponse struct {
 	ArticleId    string

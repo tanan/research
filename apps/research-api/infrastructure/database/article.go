@@ -18,6 +18,23 @@ func (h SQLHandler) FindById(id domain.ArticleId) (domain.Article, error) {
 	}, nil
 }
 
+func (h SQLHandler) FindLatest(size int) (domain.Articles, error) {
+	var m []model.Article
+	db := h.Conn.Order("last_modified desc").Limit(size).Find(&m)
+	if db.Error != nil {
+		return domain.Articles{}, db.Error
+	}
+	var articles domain.Articles
+	for _, v := range m {
+		articles = append(articles, domain.Article{
+			ArticleId:       domain.ArticleId(v.ArticleId),
+			ArticleOverview: h.toArticleOverview(v),
+			Content:         "",
+		})
+	}
+	return articles, nil
+}
+
 func (h SQLHandler) toArticleOverview(m model.Article) domain.ArticleOverview {
 	return domain.ArticleOverview{
 		Title:        m.Title,
