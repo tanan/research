@@ -1,5 +1,7 @@
 class ArticleViewState {
   List<Article> articles = [];
+
+  Article currentArticle;
 }
 
 

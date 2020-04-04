@@ -20,7 +20,6 @@ class ArticleUsecase {
 
   Future<void> _article(ArticleId id) async {
     var article = await _port.find(id);
-    print(article);
-    // _presenter.setArticle(article);
+    _presenter.showArticleContent(article);
   }
 }
