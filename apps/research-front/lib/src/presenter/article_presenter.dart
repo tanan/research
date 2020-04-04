@@ -7,8 +7,11 @@ class ArticlePresenter {
 
   ArticlePresenter(this._state);
 
-  void showArticles(d.Articles articles) =>
-    _state.articles = articles.map((v) => Article(v.id.id, _overview(v.articleOverview), null));
+  void showArticles(d.Articles articles) {
+    var a = <Article>[];
+    articles.values.forEach((v) => a.add(Article(v.id.id, _overview(v.articleOverview), v.content)));
+    _state.articles = a;
+  }
 
   ArticleOverviewUnit _overview(d.ArticleOverview overview) =>
     ArticleOverviewUnit(

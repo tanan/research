@@ -19,8 +19,13 @@ class ArticleGateway implements ArticlePort {
     (await _client.getArticle(id.id)).toArticle();
 
   @override
-  Future<Articles> findLatest() async =>
-  (await _client.getArticles()).toArticles();
+  Future<Articles> findLatest() async {
+    var articles = Articles(<Article>[]);
+    (await _client.getArticles()).articles.forEach((v) => {
+      articles.values.add(v.toArticle())
+    });
+    return articles;
+  }
 }
 
 extension on ArticlesJson {
