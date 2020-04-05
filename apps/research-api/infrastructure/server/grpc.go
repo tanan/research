@@ -2,7 +2,6 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"github.com/golang/protobuf/ptypes"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -60,7 +59,6 @@ func (s *server) FindArticleContent(c context.Context, req *article.ArticleReque
 	if err != nil {
 		return &article.ArticleResponse{}, err
 	}
-	fmt.Println(res.Content)
 	return s.toGRPCArticleResponse(res)
 }
 
