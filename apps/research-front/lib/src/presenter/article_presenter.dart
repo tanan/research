@@ -8,6 +8,7 @@ class ArticlePresenter {
   ArticlePresenter(this._state);
 
   void showArticleContent(d.Article article) {
+    print(article.id.id);
     _state.currentArticle = Article(article.id.id, _overview(article.articleOverview), article.content);
   }
 

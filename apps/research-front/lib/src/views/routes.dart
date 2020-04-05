@@ -5,7 +5,7 @@ import 'package:research_front/src/views/components/article/article_component.te
 
 class RoutePaths {
   static final dashboard = RoutePath(path: 'dashboard');
-  static final article = RoutePath(path: 'article');
+  static final article = RoutePath(path: 'articles/:id');
   static String defaultUrl() {
     return dashboard.toUrl();
   }
