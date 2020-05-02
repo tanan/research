@@ -1,8 +1,31 @@
 <header></header>
-<div class="content">
-  <div class="main-content">
-    <div class="new-articles">
-      <h2 class="title">{{ article.articleId }}</h2>
+<div class="article-content wrapper">
+  <article>
+    <div class="article-info">
+      <h2 class="title">{{ article.overview.title }}</h2>
+      <p class="announcement-date">{{ article.overview.lastModified }}</p>
+      <!-- <p class="category">{{ article.overview.category }}</p> -->
     </div>
-  </div>
+    <article_content></article_content>
+  </article>
+  <aside>
+    <h3 class="sub-title">カテゴリー</h3>
+    <ul class="sub-menu">
+      <li><a href="#">Service Mesh</a></li>
+      <li><a href="#">Service Mesh</a></li>
+      <li><a href="#">Service Mesh</a></li>
+      <li><a href="#">Service Mesh</a></li>
+    </ul>
+
+    <h3 class="sub-title">このサイトについて</h3>
+    <p>
+      CNCFについて最新の情報を提供するための、サイトです。
+      初心者から１歩踏み込んだ情報を提供いたします。
+    </p>
+  </aside>
+
+  <!-- <div class="ad">
+    <img src="images/banner.jpg" alt="新メニュー登場">
+  </div> -->
 </div>
+<footer></footer>

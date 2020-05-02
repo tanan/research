@@ -25,7 +25,7 @@ class ArticleComponent implements OnInit, OnActivate {
 
   ArticleComponent(this._usecase, this._viewState);
 
-  Article get article => _viewState.currentArticle;
+  Article get article => _viewState.currentArticle ?? _viewState.init();
 
   @override
   void ngOnInit() {

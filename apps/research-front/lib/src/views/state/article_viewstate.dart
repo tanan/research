@@ -2,6 +2,8 @@ class ArticleViewState {
   List<Article> articles = [];
 
   Article currentArticle;
+
+  Article init() => Article('', ArticleOverviewUnit('', '', '', '', ''), '');
 }
 
 
