@@ -4,6 +4,7 @@ import 'package:angular_components/angular_components.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:research_front/src/domain/article.dart' as d;
 import 'package:research_front/src/usecase/article_usecase.dart';
+import 'package:research_front/src/views/components/sidenav/sidenav_component.dart';
 import 'package:research_front/src/views/layouts/header.dart';
 import 'package:research_front/src/views/state/article_viewstate.dart';
 
@@ -15,6 +16,7 @@ import 'package:research_front/src/views/state/article_viewstate.dart';
     MaterialIconComponent,
     materialInputDirectives,
     HeaderComponent,
+    SidenavComponent,
   ],
   providers: [],
 )

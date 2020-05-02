@@ -1,3 +1,35 @@
 @charset 'UTF-8';
 
 @import 'package:research_front/src/views/styles/variables';
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.article-contents {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  .article-info {
+    position: relative;
+    padding-top: 4px;
+    margin-bottom: 40px;
+  }
+}
+
+article {
+  width: 74%;
+  text-align: center;
+  
+  p {
+    margin-bottom: 1rem;
+  }
+}
+
+.sidenav {
+  width: 22%;
+}
