@@ -5,4 +5,4 @@ insert into "research"."user" values
 
 insert into "research"."article" values
 ('5qopcYbpSTaV7a1AIqzkSu', 'article test', 'これはarticleのDescriptionです', 'editor', '2020-02-22 12:23:34', 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png'),
-('5qopcYbpSTaV7a1AIqzkS1', 'article test2', 'これはarticleのDescriptionです2', 'editor', '2020-02-21 12:23:34', 'https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png');
+('2zovtU5KoSzkTXDw2sy8EG', 'Envoy Proxy を使い倒す Part 1', 'envoy proxyをfront proxyとして利用する際のconfigurationについて解説します', 'editor', '2020-02-22 12:23:34', 'https://images.ctfassets.net/9dmsobov5wik/6CkxgrXVtt9vKCGQFQeuG6/317f7a377ad541255aca50f806efdb83/sample-thumbnail.jpg');
