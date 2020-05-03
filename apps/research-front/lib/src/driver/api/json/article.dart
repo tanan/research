@@ -20,7 +20,7 @@ class ArticleJson {
   final String lastModified;
   final String thumbnail;
   final String description;
-  final String content;
+  final Map<String, dynamic> content;
 
   ArticleJson(this.articleId, this.editor, this.articleName, this.lastModified, this.thumbnail, this.description, this.content);
   factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);

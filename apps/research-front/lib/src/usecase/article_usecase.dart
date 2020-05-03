@@ -19,6 +19,7 @@ class ArticleUsecase {
   }
 
   Future<void> _article(ArticleId id) async {
+    _presenter.clear();
     var article = await _port.find(id);
     _presenter.showArticleContent(article);
   }

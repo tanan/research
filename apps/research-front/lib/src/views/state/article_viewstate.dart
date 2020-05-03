@@ -1,16 +1,18 @@
+import 'package:angular/security.dart';
+
 class ArticleViewState {
   List<Article> articles = [];
 
   Article currentArticle;
 
-  Article init() => Article('', ArticleOverviewUnit('', '', '', '', ''), '');
+  Article init() => Article('', ArticleOverviewUnit('', '', '', '', ''), null);
 }
 
 
 class Article {
-  String articleId;
-  ArticleOverviewUnit overview;
-  String content;
+  final String articleId;
+  final ArticleOverviewUnit overview;
+  final SafeHtml content;
 
   Article(this.articleId, this.overview, this.content);
 }

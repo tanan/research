@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:research_front/src/driver/api/api_client.dart';
 import 'package:research_front/src/driver/api/error_handler.dart';
 import 'package:research_front/src/driver/api/research_api_url.dart';
@@ -31,12 +32,12 @@ import 'main.template.dart' as self;
   ClassProvider(ApiClient),
   ClassProvider(BrowserClient),
   ClassProvider(ResearchApiURL),
-  routerProvidersHash,
-
+  routerProviders,
 ])
 
 final InjectorFactory injector = self.injector$Injector;
 
-void main() {
+void main() async {
+  await initializeDateFormatting('ja');
   runApp(ng.AppComponentNgFactory, createInjector: injector);
 }

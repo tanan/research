@@ -1,23 +1,18 @@
-import 'package:equatable/equatable.dart';
-
+import 'document.dart';
 import 'fcc.dart';
 
-class ArticleId extends Equatable {
+class ArticleId {
   final String id;
 
-  ArticleId(this.id);
-
-  @override
-  List<Object> get props => [id];
-  
+  ArticleId(this.id);  
 }
 
 class Article {
   ArticleId id;
   ArticleOverview articleOverview;
-  String content;
-
-  Article(this.id, this.articleOverview, this.content);
+  Document document;
+  
+    Article(this.id, this.articleOverview, this.document);
 }
 
 class ArticleOverview {

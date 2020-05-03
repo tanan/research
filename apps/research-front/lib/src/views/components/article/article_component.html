@@ -6,7 +6,7 @@
       <p class="announcement-date">{{ article.overview.lastModified }}</p>
       <!-- <p class="category">{{ article.overview.category }}</p> -->
     </div>
-    <article_content></article_content>
+    <article-content [content]="article.content"></article-content>
   </article>
   <div class="sidenav">
     <sidenav></sidenav>

@@ -1,10 +1,10 @@
 import 'package:research_front/src/domain/article.dart';
 import 'package:research_front/src/driver/api/api_client.dart';
 import 'package:research_front/src/driver/api/json/article.dart';
+import 'package:research_front/src/gateway/contentful.dart';
 
 
 abstract class ArticlePort {
-  // Future<Articles> findAll();
   Future<Article> find(ArticleId id);
   Future<Articles> findLatest();
 }
@@ -31,11 +31,13 @@ extension on ArticlesJson {
 }
 
 extension on ArticleJson {
-  Article toArticle() =>
-    Article(
+  Article toArticle() {
+    return Article(
       ArticleId(articleId),
       _toArticleOverview(),
-      content);
+      content != null ? Contentful(content).asDocument() : null);
+  }
+    
   
   ArticleOverview _toArticleOverview() =>
     ArticleOverview(editor, articleName, lastModified, thumbnail, description);

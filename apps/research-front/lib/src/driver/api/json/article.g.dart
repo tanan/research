@@ -28,7 +28,7 @@ ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
     json['lastModified'] as String,
     json['thumbnail'] as String,
     json['description'] as String,
-    json['content'] as String,
+    json['content'] as Map<String, dynamic>,
   );
 }
 

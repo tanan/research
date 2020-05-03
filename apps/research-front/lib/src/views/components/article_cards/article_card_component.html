@@ -1,8 +1,10 @@
 <div class="card">
-  <img [src]="article.overview.thumbnail" alt="thumbnail">
-  <div class="card-container">
-    <div class="title">{{article.overview.title}}</div>
-    <div class="description">{{article.overview.description}}</div>
-    <div class="last-modified">{{article.overview.lastModified}}</div>
-  </div>
+  <a href="javascript:" (click)="onClickArticle()">
+    <img [src]="article.overview.thumbnail" alt="thumbnail">
+    <div class="card-container">
+      <div class="title">{{article.overview.title}}</div>
+      <div class="description">{{article.overview.description}}</div>
+      <div class="last-modified">{{article.overview.lastModified}}</div>
+    </div>
+  </a>
 </div>
