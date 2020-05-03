@@ -1,7 +1,6 @@
 package interactor
 
 import (
-	"fmt"
 	"research-api/config"
 	"research-api/domain"
 	"research-api/usecase/port/contentful"
@@ -55,7 +54,6 @@ func (i ArticleInteractor) FindArticleContent(id domain.ArticleId) (*server.Arti
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(content)
 	article.Content = content
 	return i.OutputPort.FindArticle(article)
 }

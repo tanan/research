@@ -72,19 +72,25 @@ func (c *ContentfulApi) rawRequest(method, subPath string, params map[string]str
 	return request, err
 }
 
-func (c ContentfulApi) FindById(id domain.ArticleId) (string, error) {
+func (c ContentfulApi) FindById(id domain.ArticleId) (map[string]interface{}, error) {
 	req, err := c.rawRequest("GET", fmt.Sprintf("/entries/%s", id), map[string]string{})
 	if err != nil {
-		return "", nil
+		return nil, nil
 	}
 	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
-		return "", nil
+		return nil, nil
 	}
 	defer resp.Body.Close()
 	var m map[string]interface{}
 	err = c.decodeResponse(resp.StatusCode, resp.Body, &m)
-	b, _ := json.Marshal(&m)
-	//b, _ := ioutil.ReadAll(resp.Body)
-	return string(b), err
+	return c.toContentMap(m), err
+}
+
+func (c ContentfulApi) toContentMap(res map[string]interface{}) map[string]interface{} {
+	if res == nil {
+		return nil
+	}
+	fields := res["fields"].(map[string]interface{})
+	return fields["content"].(map[string]interface{})
 }

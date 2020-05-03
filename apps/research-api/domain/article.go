@@ -16,7 +16,7 @@ type ArticleOverview struct {
 type Article struct {
 	ArticleId       ArticleId
 	ArticleOverview ArticleOverview
-	Content         string
+	Content         map[string]interface{}
 }
 
 type Articles []Article

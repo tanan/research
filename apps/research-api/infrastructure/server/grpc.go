@@ -1,8 +1,12 @@
 package server
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
+	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/ptypes"
+	structpb "github.com/golang/protobuf/ptypes/struct"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"research-api/adapter/controller"
@@ -64,6 +68,7 @@ func (s *server) FindArticleContent(c context.Context, req *article.ArticleReque
 
 func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.ArticleResponse, error) {
 	t, err := ptypes.TimestampProto(res.ArticleOverview.LastModified)
+	content, err := s.toStruct(res.Content)
 	if err != nil {
 		return &article.ArticleResponse{}, err
 	}
@@ -74,6 +79,24 @@ func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.Article
 		LastModified: t,
 		Thumbnail:    res.ArticleOverview.Thumbnail,
 		Description:  res.ArticleOverview.Description,
-		Content:      res.Content,
+		Content:      content,
 	}, nil
+}
+
+func (s *server) toStruct(msg map[string]interface{}) (*structpb.Struct, error) {
+
+	byteArray, err := json.Marshal(msg)
+
+	if err != nil {
+		return nil, err
+	}
+
+	reader := bytes.NewReader(byteArray)
+
+	pbs := &structpb.Struct{}
+	if err = jsonpb.Unmarshal(reader, pbs); err != nil {
+		return nil, err
+	}
+
+	return pbs, nil
 }

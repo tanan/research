@@ -19,9 +19,9 @@ type ArticleOutputPort interface {
 type ArticlesResponse []ArticleResponse
 
 type ArticleResponse struct {
-	ArticleId    string
+	ArticleId       string
 	ArticleOverview ArticleOverview
-	Content string
+	Content         map[string]interface{}
 }
 
 type ArticleOverview struct {

@@ -14,7 +14,7 @@ func (h SQLHandler) FindById(id domain.ArticleId) (domain.Article, error) {
 	return domain.Article{
 		ArticleId:       domain.ArticleId(m.ArticleId),
 		ArticleOverview: h.toArticleOverview(m),
-		Content:         "",
+		Content:         nil,
 	}, nil
 }
 
@@ -29,7 +29,7 @@ func (h SQLHandler) FindLatest(size int) (domain.Articles, error) {
 		articles = append(articles, domain.Article{
 			ArticleId:       domain.ArticleId(v.ArticleId),
 			ArticleOverview: h.toArticleOverview(v),
-			Content:         "",
+			Content:         nil,
 		})
 	}
 	return articles, nil
