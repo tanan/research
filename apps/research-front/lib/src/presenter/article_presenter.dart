@@ -1,4 +1,5 @@
 import 'package:angular/security.dart';
+import 'package:intl/intl.dart';
 import 'package:research_front/src/domain/article.dart' as d;
 import 'package:research_front/src/domain/document.dart';
 import 'package:research_front/src/views/state/article_viewstate.dart';
@@ -27,11 +28,12 @@ class ArticlePresenter {
     ArticleOverviewUnit(
       overview.editor,
       overview.title,
-      overview.lastModified,
+      DateFormat('yyyy-MM-dd').format(DateTime.parse(overview.lastModified)),
       overview.thumbnail,
       overview.description
     );
   
   SafeHtml _toHtml(Document document) =>
     document != null ? _sanitizer.bypassSecurityTrustHtml(document.contentAsHtml()) : null;
+
 }

@@ -2,3 +2,28 @@
 
 @import 'package:research_front/src/views/styles/variables';
 
+.docs {
+  font-size: 18px;
+
+  >>> {
+    ul {
+      margin: 0;
+      padding: 0;
+      line-height: 2;
+      letter-spacing: 0.25px;
+      margin-top: 16px;
+      margin-left: 31px;
+      padding-left: 24px;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    em {
+      border-bottom: solid 2px $color-accent;
+      font-weight: bold;
+      padding-bottom: 1px;
+    }
+  }
+}

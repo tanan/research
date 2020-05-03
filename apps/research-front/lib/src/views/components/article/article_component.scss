@@ -18,16 +18,22 @@
     position: relative;
     padding-top: 4px;
     margin-bottom: 40px;
+
+    .title {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .announcement-date {
+      text-align: right;
+      margin-right: 12px;
+      margin-top: 12px;
+    }
   }
 }
 
 article {
   width: 74%;
-  text-align: center;
-  
-  p {
-    margin-bottom: 1rem;
-  }
 }
 
 .sidenav {
