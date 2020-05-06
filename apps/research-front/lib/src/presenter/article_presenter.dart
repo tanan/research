@@ -28,7 +28,7 @@ class ArticlePresenter {
     ArticleOverviewUnit(
       overview.editor,
       overview.title,
-      DateFormat('yyyy-MM-dd').format(DateTime.parse(overview.lastModified)),
+      DateFormat('MMM dd, yyyy').format(DateTime.parse(overview.lastModified)),
       overview.thumbnail,
       overview.description
     );

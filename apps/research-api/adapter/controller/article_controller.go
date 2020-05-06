@@ -16,7 +16,7 @@ type ArticleController struct {
 }
 
 func NewArticleController(c *config.Config) ArticleController {
-	repo, err := database.NewSQLHandler("host=127.0.0.1 port=5432 user=dolphin dbname=research password=dolphin sslmode=disable", c.Verbose)
+	repo, err := database.NewSQLHandler("host=research-db port=5432 user=dolphin dbname=research password=dolphin sslmode=disable", c.Verbose)
 	if err != nil {
 		log.Fatalln(err)
 	}

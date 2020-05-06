@@ -3,7 +3,7 @@
   <article>
     <div class="article-info">
       <h2 class="title">{{ article.overview.title }}</h2>
-      <p class="announcement-date">最終更新日: {{ article.overview.lastModified }}</p>
+      <p class="announcement-date">{{ article.overview.lastModified }}</p>
       <!-- <p class="category">{{ article.overview.category }}</p> -->
     </div>
     <article-content [content]="article.content"></article-content>

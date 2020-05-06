@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: research-front-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: research-front
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80

@@ -21,13 +21,15 @@
 
     .title {
       text-align: center;
-      font-size: 24px;
+      font-size: 32px;
+      color: rgba(0, 0, 0, 0.7);
     }
 
     .announcement-date {
       text-align: right;
       margin-right: 12px;
       margin-top: 12px;
+      color: rgba(0, 0, 0, 0.54);
     }
   }
 }
@@ -37,5 +39,5 @@ article {
 }
 
 .sidenav {
-  width: 22%;
+  width: 20%;
 }

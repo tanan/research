@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: research-front-$LABEL
+  labels:
+    app: research-front
+    version: $LABEL
+spec:
+  selector:
+    matchLabels:
+      app: research-front
+      version: $LABEL
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: research-front
+        version: $LABEL
+    spec:
+      containers:
+      - name: research-front
+        image: "research-front:$IMAGE_TAG"
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 500Mi
+          requests:
+            cpu: 50m
+            memory: 100Mi
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: config-volume
+            mountPath: /etc/nginx/conf.d
+      volumes:
+        - name: config-volume
+          configMap:
+            name: research-front-nginx-config-$LABEL
