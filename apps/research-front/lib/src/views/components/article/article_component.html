@@ -4,6 +4,7 @@
     <div class="article-info">
       <h2 class="title">{{ article.overview.title }}</h2>
       <p class="announcement-date">{{ article.overview.lastModified }}</p>
+      <p class="editor">{{ article.overview.editor }}</p>
       <!-- <p class="category">{{ article.overview.category }}</p> -->
     </div>
     <article-content [content]="article.content"></article-content>
