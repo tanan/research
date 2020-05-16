@@ -1,4 +1,4 @@
-FROM google/dart:2.7 AS build-env
+FROM google/dart AS build-env
 
 RUN pub global activate webdev
 
