@@ -1,4 +1,4 @@
-FROM google/dart AS build-env
+FROM google/dart:2.7 AS build-env
 
 RUN pub global activate webdev
 
@@ -8,7 +8,7 @@ WORKDIR /work
 RUN pub get
 RUN webdev build -- --delete-conflicting-outputs
 
-FROM nginx:mainline-alpine
+FROM nginx:alpine
 
 COPY --from=build-env \
   /work/build/favicon.* \
