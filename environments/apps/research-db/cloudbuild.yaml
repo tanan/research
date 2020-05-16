@@ -3,7 +3,7 @@ steps:
     - name: 'gcr.io/cloud-builders/docker'
       id: Build
       dir: 'environements/apps/research-db'
-      entrypoint: 'pwd'
+      entrypoint: 'ls -al'
       # args:
       # - '$SHORT_SHA'
 
