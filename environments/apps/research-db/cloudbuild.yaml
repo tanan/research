@@ -2,10 +2,10 @@ steps:
     # This step builds the container image.
     - name: 'gcr.io/cloud-builders/docker'
       id: Build
-      # dir: 'environments/apps/research-db'
-      entrypoint: 'ls'
-      # args:
-      # - '/workspace/environments'
+      dir: 'environments/apps/research-db'
+      entrypoint: './build.sh'
+      args:
+      - '$SHORT_SHA'
 
     # This step pushes the image to Container Registry
     # The PROJECT_ID and SHORT_SHA variables are automatically
