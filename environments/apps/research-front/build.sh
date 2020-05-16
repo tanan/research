@@ -9,6 +9,7 @@ tag=${1:-"latest"}
 cwd=$(realpath $(dirname $0))
 src=sources
 name="research-front"
+registry="gcr.io/anan-project"
 
 clean() {
     [[ -d $src && -w $src ]] && rm -rf $src
@@ -20,7 +21,7 @@ copy() {
 }
 
 build() {
-    docker build --compress --pull -f ${cwd}/Dockerfile -t ${name}:${tag} .
+    docker build --compress --pull -f ${cwd}/Dockerfile -t ${registry}/${name}:${tag} .
 }
 
 push() {

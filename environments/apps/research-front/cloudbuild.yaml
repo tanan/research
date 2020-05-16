@@ -2,7 +2,7 @@ steps:
     # This step builds the container image.
     - name: 'gcr.io/cloud-builders/docker'
       id: Build
-      dir: 'environments/apps/research-api'
+      dir: 'environments/apps/research-front'
       entrypoint: './build.sh'
       args:
       - '$SHORT_SHA'
@@ -14,4 +14,4 @@ steps:
       id: Push
       args:
       - 'push'
-      - 'gcr.io/$PROJECT_ID/research-api:$SHORT_SHA'
+      - 'gcr.io/$PROJECT_ID/research-front:$SHORT_SHA'
