@@ -2,7 +2,7 @@ steps:
     # This step builds the container image.
     - name: 'gcr.io/cloud-builders/docker'
       id: Build
-      dir: 'environments/apps/research-db'
+      # dir: 'environments/apps/research-db'
       entrypoint: 'ls'
       # args:
       # - '/workspace/environments'
