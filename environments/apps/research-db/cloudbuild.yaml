@@ -2,6 +2,7 @@ steps:
     # This step builds the container image.
     - name: 'gcr.io/cloud-builders/docker'
       id: Build
+      dir: 'environements/apps/research-db'
       entrypoint: './build.sh'
       args:
       - '$SHORT_SHA'
