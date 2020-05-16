@@ -1,4 +1,3 @@
-# syntax = docker/dockerfile:1.1-experimental
 FROM google/dart:2.7 AS build-env
 
 RUN pub global activate webdev
