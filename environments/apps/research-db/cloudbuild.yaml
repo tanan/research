@@ -5,7 +5,7 @@ steps:
       dir: 'environements/apps/research-db'
       entrypoint: 'ls'
       args:
-      - '/workspace/environements/apps/research-db'
+      - '/workspace'
 
     # This step pushes the image to Container Registry
     # The PROJECT_ID and SHORT_SHA variables are automatically
@@ -15,3 +15,8 @@ steps:
       args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/research-db:$SHORT_SHA'
+
+    # - name: ''
+    #   id: Deploy
+    #   env:
+    #   - 'CLOUDSDK_CONTAINER_CLUSTER=node-example-cluster'
