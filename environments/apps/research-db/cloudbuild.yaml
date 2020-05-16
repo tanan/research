@@ -4,8 +4,8 @@ steps:
       id: Build
       dir: 'environements/apps/research-db'
       entrypoint: 'ls'
-      # args:
-      # - '$SHORT_SHA'
+      args:
+      - '/workspace/environements/apps/research-db'
 
     # This step pushes the image to Container Registry
     # The PROJECT_ID and SHORT_SHA variables are automatically
