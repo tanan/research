@@ -5,7 +5,7 @@ DOCKER_BUILDKIT=1
 export DOCKER_BUILDKIT
 
 tag=${1:-"latest"}
-name="research-api"
+name="grpc-gateway"
 registry="gcr.io/anan-project"
 
 cwd=$(realpath $(dirname $0))
