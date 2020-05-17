@@ -12,3 +12,18 @@ spec:
     protocol: TCP
     port: 5000
     targetPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-grpc-gateway-svc
+  namespace: research
+spec:
+  type: LoadBalancer
+  selector:
+    app: grpc-gateway
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 5000
