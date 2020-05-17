@@ -1,25 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: research-front-$LABEL
+  name: research-front
   labels:
     app: research-front
-    version: $LABEL
 spec:
   selector:
     matchLabels:
       app: research-front
-      version: $LABEL
   replicas: 1
   template:
     metadata:
       labels:
         app: research-front
-        version: $LABEL
     spec:
       containers:
       - name: research-front
-        image: "research-front:$IMAGE_TAG"
+        image: "gcr.io/anan-project/research-front:$IMAGE_TAG"
         resources:
           limits:
             cpu: 1000m
@@ -36,4 +33,4 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: research-front-nginx-config-$LABEL
+            name: research-front-nginx-config
