@@ -29,9 +29,11 @@ push() {
 }
 
 deployment() {
-    sed s/\${IMAGE_TAG}/${tag}/ deployment.yml > kubernetes.yml
-    echo "---" >> kubernetes.yml
     cat configmap.yml >> kubernetes.yml
+    echo "---" >> kubernetes.yml
+    sed s/\${IMAGE_TAG}/${tag}/ deployment.yml >> kubernetes.yml
+    echo "---" >> kubernetes.yml
+    cat service.yml >> kubernetes.yml
 }
 
 #copy && build && push && clean

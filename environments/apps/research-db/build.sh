@@ -12,5 +12,10 @@ push () {
     docker push "$image_name"
 }
 
-#build && push
-build
+deployment() {
+    sed s/\${IMAGE_TAG}/${tag}/ deployment.yml >> kubernetes.yml
+    echo "---" >> kubernetes.yml
+    cat service.yml >> kubernetes.yml
+}
+
+build && deployment
