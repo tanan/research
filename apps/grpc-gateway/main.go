@@ -34,7 +34,7 @@ func run() error {
 
 	newMux := handlers.CORS(
 		handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"}),
-		handlers.AllowedOrigins([]string{"http://api.weeekend.work", "http://localhost:8080", "http://127.0.0.1:8080"}),
+		handlers.AllowedOrigins([]string{"http://research.weeekend.work", "http://api.weeekend.work", "http://localhost:8080", "http://127.0.0.1:8080"}),
 		handlers.AllowedHeaders([]string{"content-type"}),
 	)(mux)
 	return http.ListenAndServe(":5000", newMux)
