@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-DOCKER_BUILDKIT=1
-export DOCKER_BUILDKIT
+# DOCKER_BUILDKIT=1
+# export DOCKER_BUILDKIT
 
 tag=${1:-"latest"}
 name="research-api"
