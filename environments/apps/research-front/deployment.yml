@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: research-front
+  namespace: research
   labels:
     app: research-front
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
       - name: research-front
-        image: "gcr.io/anan-project/research-front:$IMAGE_TAG"
+        image: "gcr.io/anan-project/research-front:${IMAGE_TAG}"
         resources:
           limits:
             cpu: 1000m

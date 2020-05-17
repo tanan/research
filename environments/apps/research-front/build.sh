@@ -28,5 +28,11 @@ push() {
     docker push ${name}:${tag}
 }
 
+deployment() {
+    sed s/\${IMAGE_TAG}/${tag}/ deployment.yml > kubernetes.yml
+    echo "---" >> kubernetes.yml
+    cat configmap.yml >> kubernetes.yml
+}
+
 #copy && build && push && clean
-copy && build && clean
+copy && build && clean && deployment

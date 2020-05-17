@@ -15,3 +15,14 @@ steps:
       args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/research-front:$SHORT_SHA'
+
+    - name: 'gcr.io/cloud-builders/kubectl'
+      id: Deploy
+      dir: 'environments/apps/research-front'
+      args:
+      - 'apply'
+      - '-f'
+      - 'kubernetes.yml'
+      env:
+      - 'CLOUDSDK_COMPUTE_ZONE=asia-northeast1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gke01'

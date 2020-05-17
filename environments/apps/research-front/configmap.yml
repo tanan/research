@@ -29,4 +29,5 @@ data:
 
 kind: ConfigMap
 metadata:
-  name: research-front-nginx-config-${LABEL}
+  name: research-front-nginx-config
+  namespace: research
