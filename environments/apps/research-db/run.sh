@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=research-db
+name=research-db-svc
 network=research
 
 count=$(docker network ls | grep ${network} | wc -l)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=grpc-gateway
+name=grpc-gateway-svc
 network=research
 
 count=$(docker network ls | grep ${network} | wc -l)

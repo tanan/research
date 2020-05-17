@@ -1,6 +1,6 @@
 #!/bin/bash
 
-name=research-api
+name=research-api-svc
 network=research
 
 count=$(docker network ls | grep ${network} | wc -l)
