@@ -11,6 +11,5 @@ RUN go build -o research main.go
 # runtime image
 FROM alpine
 
-RUN mkdir -p /data/pdf/handout
 COPY --from=buildImage /usr/src/app/research /
 ENTRYPOINT ["/research"]

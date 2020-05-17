@@ -20,6 +20,7 @@ push() {
 }
 
 deployment() {
+    cd ${cwd}
     sed s/\${IMAGE_TAG}/${tag}/ deployment.yml >> kubernetes.yml
     echo "---" >> kubernetes.yml
     cat service.yml >> kubernetes.yml
