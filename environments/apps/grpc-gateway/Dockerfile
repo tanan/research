@@ -11,6 +11,5 @@ RUN go build -o grpc-gateway main.go
 # runtime image
 FROM alpine
 
-RUN mkdir -p /data/pdf/handout
 COPY --from=buildImage /usr/src/app/grpc-gateway /
 ENTRYPOINT ["/grpc-gateway"]
