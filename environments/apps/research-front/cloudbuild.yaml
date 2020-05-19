@@ -15,6 +15,12 @@ steps:
       args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/research-front:$SHORT_SHA'
+    
+    - name: 'gcr.io/cloud-builders/docker'
+      id: Push
+      args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/research-front:latest'
 
     - name: 'gcr.io/cloud-builders/kubectl'
       id: Deploy

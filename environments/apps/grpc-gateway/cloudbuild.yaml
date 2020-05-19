@@ -16,6 +16,12 @@ steps:
       - 'push'
       - 'gcr.io/$PROJECT_ID/grpc-gateway:$SHORT_SHA'
 
+    - name: 'gcr.io/cloud-builders/docker'
+      id: Push
+      args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/grpc-gateway:latest'
+
     - name: 'gcr.io/cloud-builders/kubectl'
       id: Deploy
       dir: 'environments/apps/grpc-gateway'
