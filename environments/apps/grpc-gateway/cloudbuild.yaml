@@ -17,9 +17,9 @@ steps:
       - 'gcr.io/$PROJECT_ID/grpc-gateway:$SHORT_SHA'
 
     - name: 'gcr.io/cloud-builders/docker'
-      id: Push
+      id: Push latest
       args:
-      - 'push latest'
+      - 'push'
       - 'gcr.io/$PROJECT_ID/grpc-gateway:latest'
 
     - name: 'gcr.io/cloud-builders/kubectl'
