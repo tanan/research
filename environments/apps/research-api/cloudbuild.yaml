@@ -17,7 +17,7 @@ steps:
       - 'gcr.io/$PROJECT_ID/research-api:$SHORT_SHA'
 
     - name: 'gcr.io/cloud-builders/docker'
-      id: Push
+      id: Push latest
       args:
       - 'push'
       - 'gcr.io/$PROJECT_ID/research-api:latest'
