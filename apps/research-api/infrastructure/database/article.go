@@ -2,7 +2,6 @@ package database
 
 import (
 	"bytes"
-	"encoding/base64"
 	"research-api/domain"
 	"research-api/infrastructure/database/model"
 )
@@ -61,7 +60,7 @@ func (h SQLHandler) StoreEditor(editor domain.Editor) (domain.Editor, error) {
 	return domain.Editor{
 		Id:   m.EditorId,
 		Name: m.Name,
-		Icon: base64.StdEncoding.EncodeToString(m.Icon),
+		Icon: string(m.Icon),
 	}, nil
 }
 
@@ -71,7 +70,7 @@ func (h SQLHandler) toArticleOverview(article model.Article, editor model.Editor
 		Editor: domain.Editor{
 			Id:   editor.EditorId,
 			Name: editor.Name,
-			Icon: base64.StdEncoding.EncodeToString(editor.Icon),
+			Icon: string(editor.Icon),
 		},
 		LastModified: article.LastModified,
 		Thumbnail:    article.Thumbnail,
