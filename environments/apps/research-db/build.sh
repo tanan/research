@@ -5,12 +5,8 @@ tag=${1:-"latest"}
 image_name="gcr.io/anan-project/research-db"
 
 build () {
-    docker build --compress --pull -t "${image_name}" .
+    docker build --compress --pull -t "${image_name}:${tag}" .
     docker tag ${image_name}:${tag} ${image_name}:latest
-}
-
-push () {
-    docker push "$image_name"
 }
 
 deployment() {

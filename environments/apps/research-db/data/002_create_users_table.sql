@@ -13,9 +13,16 @@ create table "research"."article" (
   id text primary key
   ,title text not null
   ,description text not null
-  ,editor text not null
+  ,editor int not null
   ,last_modified timestamp not null
   ,thumbnail text not null
+  ,foreign key (editor) references research.editor(id)
+);
+
+create table "research"."editor" (
+  id serial
+  ,name text not null
+  ,icon bytea
 );
 
 create table "research"."article_content" (
