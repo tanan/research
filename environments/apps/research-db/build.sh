@@ -2,7 +2,7 @@
 set -eu
 
 tag=${1:-"latest"}
-image_name="gcr.io/anan-project/research-db:${tag}"
+image_name="gcr.io/anan-project/research-db"
 
 build () {
     docker build --compress --pull -t "${image_name}" .
