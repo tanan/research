@@ -27,6 +27,7 @@ class ArticlePresenter {
   ArticleOverviewUnit _overview(d.ArticleOverview overview) =>
     ArticleOverviewUnit(
       overview.editor,
+      overview.editorIcon,
       overview.title,
       DateFormat('MMM dd, yyyy').format(DateTime.parse(overview.lastModified)),
       overview.thumbnail,

@@ -40,5 +40,5 @@ extension on ArticleJson {
     
   
   ArticleOverview _toArticleOverview() =>
-    ArticleOverview(editor, articleName, lastModified, thumbnail, description);
+    ArticleOverview(editor, editorIcon, articleName, lastModified, thumbnail, description);
 }

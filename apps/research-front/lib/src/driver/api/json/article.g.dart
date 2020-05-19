@@ -24,6 +24,7 @@ ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
   return ArticleJson(
     json['articleId'] as String,
     json['editor'] as String,
+    json['editorIcon'] as String,
     json['articleName'] as String,
     json['lastModified'] as String,
     json['thumbnail'] as String,
@@ -36,6 +37,7 @@ Map<String, dynamic> _$ArticleJsonToJson(ArticleJson instance) =>
     <String, dynamic>{
       'articleId': instance.articleId,
       'editor': instance.editor,
+      'editorIcon': instance.editorIcon,
       'articleName': instance.articleName,
       'lastModified': instance.lastModified,
       'thumbnail': instance.thumbnail,

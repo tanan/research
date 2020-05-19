@@ -16,12 +16,13 @@ class ArticlesJson {
 class ArticleJson {
   final String articleId;
   final String editor;
+  final String editorIcon;
   final String articleName;
   final String lastModified;
   final String thumbnail;
   final String description;
   final Map<String, dynamic> content;
 
-  ArticleJson(this.articleId, this.editor, this.articleName, this.lastModified, this.thumbnail, this.description, this.content);
+  ArticleJson(this.articleId, this.editor, this.editorIcon, this.articleName, this.lastModified, this.thumbnail, this.description, this.content);
   factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);
 }

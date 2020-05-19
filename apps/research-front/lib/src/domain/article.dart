@@ -17,12 +17,13 @@ class Article {
 
 class ArticleOverview {
   String editor;
+  String editorIcon;
   String title;
   String lastModified;
   String thumbnail;
   String description;
 
-  ArticleOverview(this.editor, this.title, this.lastModified, this.thumbnail, this.description);
+  ArticleOverview(this.editor, this.editorIcon, this.title, this.lastModified, this.thumbnail, this.description);
 }
 
 class Articles extends FCC<Article> {

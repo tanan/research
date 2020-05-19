@@ -5,7 +5,7 @@ class ArticleViewState {
 
   Article currentArticle;
 
-  Article init() => Article('', ArticleOverviewUnit('', '', '', '', ''), null);
+  Article init() => Article('', ArticleOverviewUnit('', '', '', '', '', ''), null);
 }
 
 
@@ -19,10 +19,11 @@ class Article {
 
 class ArticleOverviewUnit {
   String editor;
+  String editorIcon;
   String title;
   String lastModified;
   String thumbnail;
   String description;
 
-  ArticleOverviewUnit(this.editor, this.title, this.lastModified, this.thumbnail, this.description);
+  ArticleOverviewUnit(this.editor, this.editorIcon, this.title, this.lastModified, this.thumbnail, this.description);
 }
