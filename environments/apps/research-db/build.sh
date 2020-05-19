@@ -6,6 +6,7 @@ image_name="gcr.io/anan-project/research-db:${tag}"
 
 build () {
     docker build --compress --pull -t "${image_name}" .
+    docker tag ${image_name}:${tag} ${image_name}:latest
 }
 
 push () {

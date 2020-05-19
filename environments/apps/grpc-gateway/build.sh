@@ -13,6 +13,7 @@ cwd=$(realpath $(dirname $0))
 build() {
     cd ${cwd}/../../../apps/${name}
     docker build --compress --pull -f ${cwd}/Dockerfile -t ${registry}/${name}:${tag} .
+    docker tag ${registry}/${name}:${tag} ${registry}/${name}:latest
 }
 
 push() {
