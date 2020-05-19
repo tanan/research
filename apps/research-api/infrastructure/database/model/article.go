@@ -6,7 +6,7 @@ type Article struct {
 	ArticleId    string    `gorm:"column:id"`
 	Title        string    `gorm:"column:title"`
 	Description  string    `gorm:"column:description"`
-	Editor       string    `gorm:"column:editor"`
+	Editor       int       `gorm:"column:editor"`
 	Thumbnail    string    `gorm:"column:thumbnail"`
 	LastModified time.Time `gorm:"column:last_modified"`
 }

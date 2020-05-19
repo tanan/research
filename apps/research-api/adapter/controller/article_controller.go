@@ -40,3 +40,7 @@ func (c *ArticleController) FindArticles() (*server.ArticlesResponse, error) {
 func (c *ArticleController) FindArticleContent(id domain.ArticleId) (*server.ArticleResponse, error) {
 	return c.InputPort.FindArticleContent(id)
 }
+
+func (c *ArticleController) StoreArticleEditor(editor domain.Editor) (*server.StoreEditorResponse, error) {
+	return c.InputPort.StoreEditor(editor)
+}

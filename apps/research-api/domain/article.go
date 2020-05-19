@@ -4,9 +4,15 @@ import "time"
 
 type ArticleId string
 
+type Editor struct {
+	Id   int
+	Name string
+	Icon string
+}
+
 type ArticleOverview struct {
 	Title        string
-	Editor       string
+	Editor       Editor
 	LastModified time.Time
 	Thumbnail    string
 	Description  string

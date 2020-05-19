@@ -57,3 +57,11 @@ func (i ArticleInteractor) FindArticleContent(id domain.ArticleId) (*server.Arti
 	article.Content = content
 	return i.OutputPort.FindArticle(article)
 }
+
+func (i ArticleInteractor) StoreEditor(e domain.Editor) (*server.StoreEditorResponse, error) {
+	editor, err := i.ArticleRepository.StoreEditor(e)
+	if err != nil {
+		return nil, err
+	}
+	return i.OutputPort.StoreEditor(editor)
+}

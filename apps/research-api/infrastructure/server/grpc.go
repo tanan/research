@@ -50,6 +50,7 @@ func (s *server) FindArticles(c context.Context, req *article.ArticlesRequest) (
 			ArticleId:    v.ArticleId,
 			ArticleName:  v.ArticleOverview.Title,
 			Editor:       v.ArticleOverview.Editor,
+			EditorIcon:   v.ArticleOverview.EditorIcon,
 			LastModified: t,
 			Thumbnail:    v.ArticleOverview.Thumbnail,
 			Description:  v.ArticleOverview.Description,
@@ -66,6 +67,24 @@ func (s *server) FindArticleContent(c context.Context, req *article.ArticleReque
 	return s.toGRPCArticleResponse(res)
 }
 
+func (s *server) StoreEditor(ctx context.Context, req *article.StoreEditorRequest) (*article.StoreEditorResponse, error) {
+	res, err := s.controller.StoreArticleEditor(domain.Editor{
+		Id:   int(req.Editor.EditorId),
+		Name: req.Editor.EditorName,
+		Icon: req.Editor.EditorIcon,
+	})
+	if err != nil {
+		return &article.StoreEditorResponse{}, err
+	}
+	return &article.StoreEditorResponse{
+		Editor: &article.Editor{
+			EditorId:   int32(res.EditorId),
+			EditorName: res.EditorName,
+			EditorIcon: res.EditorIcon,
+		},
+	}, nil
+}
+
 func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.ArticleResponse, error) {
 	t, err := ptypes.TimestampProto(res.ArticleOverview.LastModified)
 	content, err := s.toStruct(res.Content)
@@ -76,6 +95,7 @@ func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.Article
 		ArticleId:    res.ArticleId,
 		ArticleName:  res.ArticleOverview.Title,
 		Editor:       res.ArticleOverview.Editor,
+		EditorIcon:   res.ArticleOverview.EditorIcon,
 		LastModified: t,
 		Thumbnail:    res.ArticleOverview.Thumbnail,
 		Description:  res.ArticleOverview.Description,

@@ -7,9 +7,9 @@ import (
 
 func (p *GRPCPresenter) FindArticle(article domain.Article) (*server.ArticleResponse, error) {
 	return &server.ArticleResponse{
-		ArticleId:    string(article.ArticleId),
+		ArticleId:       string(article.ArticleId),
 		ArticleOverview: p.toArticleOverview(article.ArticleOverview),
-		Content: article.Content,
+		Content:         article.Content,
 	}, nil
 }
 
@@ -25,10 +25,19 @@ func (p *GRPCPresenter) FindArticles(articles domain.Articles) (*server.Articles
 	return &res, nil
 }
 
+func (p *GRPCPresenter) StoreEditor(editor domain.Editor) (*server.StoreEditorResponse, error) {
+	return &server.StoreEditorResponse{
+		EditorId:   editor.Id,
+		EditorName: editor.Name,
+		EditorIcon: editor.Icon,
+	}, nil
+}
+
 func (p *GRPCPresenter) toArticleOverview(overview domain.ArticleOverview) server.ArticleOverview {
 	return server.ArticleOverview{
 		Title:        overview.Title,
-		Editor:       overview.Editor,
+		Editor:       overview.Editor.Name,
+		EditorIcon:   overview.Editor.Icon,
 		LastModified: overview.LastModified,
 		Thumbnail:    overview.Thumbnail,
 		Description:  overview.Description,

@@ -22,6 +22,12 @@ service Article {
             get: "/v1/articles/{articleId}/content"
         };
     }
+    rpc StoreEditor (StoreEditorRequest) returns (StoreEditorResponse) {
+        option (google.api.http) = {
+            post: "/v1/editors"
+            body: "editor"
+        };
+    }
 }
 
 message ArticlesRequest {}
@@ -38,4 +44,20 @@ message ArticleResponse {
 	string thumbnail = 5;
 	string description = 6;
     google.protobuf.Struct content = 7;
+    string editorIcon = 8;
+}
+
+
+message StoreEditorRequest {
+    Editor editor = 1;
+}
+
+message Editor {
+    int32 editorId = 1;
+    string editorName = 2;
+    string editorIcon = 3;
+}
+
+message StoreEditorResponse {
+    Editor editor = 1;
 }
