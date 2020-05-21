@@ -13,7 +13,6 @@ import (
 	"research-api/domain"
 	"research-api/proto"
 	p "research-api/usecase/port/server"
-	"time"
 )
 
 type server struct {
@@ -63,6 +62,10 @@ func (s *server) FindArticleContent(c context.Context, req *article.Article) (*a
 }
 
 func (s *server) StoreArticle(ctx context.Context, req *article.StoreArticleRequest) (*article.StoreArticleResponse, error) {
+	t, err := ptypes.Timestamp(req.Article.Overview.LastModified)
+	if err != nil {
+		return &article.StoreArticleResponse{Message: "ng"}, err
+	}
 	res, err := s.controller.StoreArticle(domain.Article{
 		ArticleId: domain.ArticleId(req.Article.ArticleId),
 		ArticleOverview: domain.ArticleOverview{
@@ -72,7 +75,7 @@ func (s *server) StoreArticle(ctx context.Context, req *article.StoreArticleRequ
 				Name: req.Article.Overview.Editor.EditorName,
 				Icon: req.Article.Overview.Editor.EditorIcon,
 			},
-			LastModified: time.Unix(req.Article.Overview.LastModified.GetSeconds(), int64(req.Article.Overview.LastModified.GetNanos())),
+			LastModified: t,
 			Thumbnail:    req.Article.Overview.Thumbnail,
 			Description:  req.Article.Overview.Description,
 		},
