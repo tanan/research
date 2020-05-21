@@ -6,7 +6,6 @@ import (
 	"log"
 	"net"
 	"research-api/adapter/controller"
-	"research-api/config"
 	"research-api/infrastructure/server"
 )
 
@@ -18,8 +17,7 @@ func main() {
 		log.Fatalln(err)
 	}
 	s := grpc.NewServer()
-	c := config.Config{}
-	articleController := controller.NewArticleController(&c)
+	articleController := controller.NewArticleController()
 	server.NewServer(s, articleController)
 
 	fmt.Printf("[server started] localhost%s\n", port)

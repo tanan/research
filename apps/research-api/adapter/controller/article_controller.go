@@ -15,8 +15,8 @@ type ArticleController struct {
 	InputPort server.ArticleInputPort
 }
 
-func NewArticleController(c *config.Config) ArticleController {
-	repo, err := database.NewSQLHandler("host=research-db-svc port=5432 user=dolphin dbname=research password=dolphin sslmode=disable", c.Verbose)
+func NewArticleController() ArticleController {
+	repo, err := database.NewSQLHandler(config.GetDatabaseConnInfo(), config.GetVerbose())
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -25,7 +25,7 @@ func NewArticleController(c *config.Config) ArticleController {
 		log.Fatalln(err)
 	}
 	return ArticleController{
-		InputPort: interactor.NewArticleInteractor(c, presenter.NewGRPCPresenter(c), repo, api),
+		InputPort: interactor.NewArticleInteractor(presenter.NewGRPCPresenter(), repo, api),
 	}
 }
 

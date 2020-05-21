@@ -34,3 +34,21 @@ resource "google_compute_subnetwork" "ne1_subnet" {
     ip_cidr_range = "10.146.192.0/18"
   }
 }
+
+###############################################################################
+# private access for managed services
+# https://cloud.google.com/vpc/docs/configure-private-services-access
+resource "google_compute_global_address" "anan_project_servicenetworking" {
+  name          = "anan-project-servicenetworking"
+  purpose       = "VPC_PEERING"
+  address_type  = "INTERNAL"
+  address       = "10.147.0.0"
+  prefix_length = 16
+  network       = google_compute_network.anan_project.self_link
+}
+
+resource "google_service_networking_connection" "servicenetworking_googleapis_com" {
+  network                 = google_compute_network.anan_project.self_link
+  service                 = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.anan_project_servicenetworking.name]
+}

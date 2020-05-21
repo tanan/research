@@ -1,7 +1,6 @@
 package interactor
 
 import (
-	"research-api/config"
 	"research-api/domain"
 	"research-api/usecase/port/contentful"
 	"research-api/usecase/port/repository"
@@ -9,20 +8,20 @@ import (
 )
 
 type ArticleInteractor struct {
-	Config            *config.Config
+	//Config            *config.Config
 	OutputPort        server.ArticleOutputPort
 	ArticleRepository repository.ArticleRepository
 	ContentfulApi     contentful.ContentfulApi
 }
 
 func NewArticleInteractor(
-	config *config.Config,
+	//config *config.Config,
 	outputPort server.ArticleOutputPort,
 	articleRepository repository.ArticleRepository,
 	contentfulApi contentful.ContentfulApi,
 ) ArticleInteractor {
 	return ArticleInteractor{
-		Config:            config,
+		//Config:            config,
 		OutputPort:        outputPort,
 		ArticleRepository: articleRepository,
 		ContentfulApi:     contentfulApi,
