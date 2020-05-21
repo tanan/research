@@ -9,12 +9,14 @@ type ArticleInputPort interface {
 	FindArticle(id domain.ArticleId) (*ArticleResponse, error)
 	FindArticles() (*ArticlesResponse, error)
 	FindArticleContent(id domain.ArticleId) (*ArticleResponse, error)
+	StoreArticle(article domain.Article) (*StoreArticleResponse, error)
 	StoreEditor(editor domain.Editor) (*StoreEditorResponse, error)
 }
 
 type ArticleOutputPort interface {
 	FindArticle(article domain.Article) (*ArticleResponse, error)
 	FindArticles(articles domain.Articles) (*ArticlesResponse, error)
+	StoreArticle(record int, err error) (*StoreArticleResponse, error)
 	StoreEditor(editor domain.Editor) (*StoreEditorResponse, error)
 }
 
@@ -24,6 +26,10 @@ type ArticleResponse struct {
 	ArticleId       string
 	ArticleOverview ArticleOverview
 	Content         map[string]interface{}
+}
+
+type StoreArticleResponse struct {
+	Message string
 }
 
 type StoreEditorResponse struct {

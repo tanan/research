@@ -6,20 +6,26 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/struct.proto";
 
-service Article {
-    rpc FindArticles (ArticlesRequest) returns (ArticlesResponse) {
+service ArticleService {
+    rpc FindArticles (Articles) returns (Articles) {
         option (google.api.http) = {
             get: "/v1/articles"
         };
     }
-    rpc FindArticle (ArticleRequest) returns (ArticleResponse) {
+    rpc FindArticle (Article) returns (Article) {
         option (google.api.http) = {
             get: "/v1/articles/{articleId}"
         };
     }
-    rpc FindArticleContent (ArticleRequest) returns (ArticleResponse) {
+    rpc FindArticleContent (Article) returns (Article) {
         option (google.api.http) = {
             get: "/v1/articles/{articleId}/content"
+        };
+    }
+    rpc StoreArticle (StoreArticleRequest) returns (StoreArticleResponse) {
+        option (google.api.http) = {
+            post: "/v1/articles"
+            body: "article"
         };
     }
     rpc StoreEditor (StoreEditorRequest) returns (StoreEditorResponse) {
@@ -30,26 +36,22 @@ service Article {
     }
 }
 
-message ArticlesRequest {}
-
-message ArticlesResponse { repeated ArticleResponse articles = 1; }
-
-message ArticleRequest { string articleId = 1; }
-
-message ArticleResponse {
-    string articleId = 1;
-    string articleName = 2;
-    string editor = 3;
-    google.protobuf.Timestamp lastModified = 4;
-	string thumbnail = 5;
-	string description = 6;
-    google.protobuf.Struct content = 7;
-    string editorIcon = 8;
+message Articles {
+    repeated Article articles = 1;
 }
 
+message Article {
+    string articleId = 1;
+    ArticleOverview overview = 2;
+    google.protobuf.Struct content = 7;
+}
 
-message StoreEditorRequest {
-    Editor editor = 1;
+message ArticleOverview {
+    string articleName = 1;
+    string description = 2;
+    Editor editor = 3;
+    google.protobuf.Timestamp lastModified = 4;
+    string thumbnail = 5;
 }
 
 message Editor {
@@ -58,6 +60,10 @@ message Editor {
     string editorIcon = 3;
 }
 
-message StoreEditorResponse {
-    Editor editor = 1;
-}
+message StoreArticleRequest { Article article = 1; }
+
+message StoreArticleResponse { string message = 1; }
+
+message StoreEditorRequest { Editor editor = 1; }
+
+message StoreEditorResponse { Editor editor = 1; }

@@ -23,12 +23,10 @@ Map<String, dynamic> _$ArticlesJsonToJson(ArticlesJson instance) =>
 ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
   return ArticleJson(
     json['articleId'] as String,
-    json['editor'] as String,
-    json['editorIcon'] as String,
-    json['articleName'] as String,
-    json['lastModified'] as String,
-    json['thumbnail'] as String,
-    json['description'] as String,
+    json['overview'] == null
+        ? null
+        : ArticleOverviewJson.fromJson(
+            json['overview'] as Map<String, dynamic>),
     json['content'] as Map<String, dynamic>,
   );
 }
@@ -36,11 +34,41 @@ ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ArticleJsonToJson(ArticleJson instance) =>
     <String, dynamic>{
       'articleId': instance.articleId,
+      'overview': instance.overview,
+      'content': instance.content,
+    };
+
+ArticleOverviewJson _$ArticleOverviewJsonFromJson(Map<String, dynamic> json) {
+  return ArticleOverviewJson(
+    json['editor'] == null
+        ? null
+        : EditorJson.fromJson(json['editor'] as Map<String, dynamic>),
+    json['articleName'] as String,
+    json['lastModified'] as String,
+    json['thumbnail'] as String,
+    json['description'] as String,
+  );
+}
+
+Map<String, dynamic> _$ArticleOverviewJsonToJson(
+        ArticleOverviewJson instance) =>
+    <String, dynamic>{
       'editor': instance.editor,
-      'editorIcon': instance.editorIcon,
       'articleName': instance.articleName,
       'lastModified': instance.lastModified,
       'thumbnail': instance.thumbnail,
       'description': instance.description,
-      'content': instance.content,
+    };
+
+EditorJson _$EditorJsonFromJson(Map<String, dynamic> json) {
+  return EditorJson(
+    json['editorName'] as String,
+    json['editorIcon'] as String,
+  );
+}
+
+Map<String, dynamic> _$EditorJsonToJson(EditorJson instance) =>
+    <String, dynamic>{
+      'editorName': instance.editorName,
+      'editorIcon': instance.editorIcon,
     };

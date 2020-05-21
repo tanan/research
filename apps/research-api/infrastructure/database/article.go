@@ -48,6 +48,22 @@ func (h SQLHandler) FindLatest(size int) (domain.Articles, error) {
 	return articles, nil
 }
 
+func (h SQLHandler) StoreArticle(article domain.Article) (int, error) {
+	m := model.Article{
+		ArticleId:    string(article.ArticleId),
+		Title:        article.ArticleOverview.Title,
+		Description:  article.ArticleOverview.Description,
+		Editor:       article.ArticleOverview.Editor.Id,
+		Thumbnail:    article.ArticleOverview.Thumbnail,
+		LastModified: article.ArticleOverview.LastModified,
+	}
+	db := h.Conn.Save(&m)
+	if db.Error != nil {
+		return 0, db.Error
+	}
+	return 1, nil
+}
+
 func (h SQLHandler) StoreEditor(editor domain.Editor) (domain.Editor, error) {
 	m := model.Editor{
 		Name: editor.Name,

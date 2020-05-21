@@ -15,14 +15,30 @@ class ArticlesJson {
 @JsonSerializable()
 class ArticleJson {
   final String articleId;
-  final String editor;
-  final String editorIcon;
+  final ArticleOverviewJson overview;
+  final Map<String, dynamic> content;
+
+  ArticleJson(this.articleId, this.overview, this.content);
+  factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);
+}
+
+@JsonSerializable()
+class ArticleOverviewJson {
+  final EditorJson editor;
   final String articleName;
   final String lastModified;
   final String thumbnail;
   final String description;
-  final Map<String, dynamic> content;
 
-  ArticleJson(this.articleId, this.editor, this.editorIcon, this.articleName, this.lastModified, this.thumbnail, this.description, this.content);
-  factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);
+  ArticleOverviewJson(this.editor, this.articleName, this.lastModified, this.thumbnail, this.description);
+  factory ArticleOverviewJson.fromJson(Map<String, dynamic> json) => _$ArticleOverviewJsonFromJson(json);
+}
+
+@JsonSerializable()
+class EditorJson {
+  final String editorName;
+  final String editorIcon;
+
+  EditorJson(this.editorName, this.editorIcon);
+  factory EditorJson.fromJson(Map<String, dynamic> json) => _$EditorJsonFromJson(json);
 }

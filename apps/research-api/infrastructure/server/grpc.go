@@ -13,6 +13,7 @@ import (
 	"research-api/domain"
 	"research-api/proto"
 	p "research-api/usecase/port/server"
+	"time"
 )
 
 type server struct {
@@ -23,48 +24,66 @@ func NewServer(s *grpc.Server, articleController controller.ArticleController) {
 	server := &server{
 		controller: articleController,
 	}
-	article.RegisterArticleServer(s, server)
+	article.RegisterArticleServiceServer(s, server)
 	reflection.Register(s)
 }
 
-func (s *server) FindArticle(c context.Context, req *article.ArticleRequest) (*article.ArticleResponse, error) {
+func (s *server) FindArticle(c context.Context, req *article.Article) (*article.Article, error) {
 	res, err := s.controller.FindArticle(domain.ArticleId(req.ArticleId))
 	if err != nil {
-		return &article.ArticleResponse{}, err
+		return &article.Article{}, err
 	}
 	return s.toGRPCArticleResponse(res)
 }
 
-func (s *server) FindArticles(c context.Context, req *article.ArticlesRequest) (*article.ArticlesResponse, error) {
+func (s *server) FindArticles(c context.Context, req *article.Articles) (*article.Articles, error) {
 	res, err := s.controller.FindArticles()
 	if err != nil {
-		return &article.ArticlesResponse{}, err
+		return &article.Articles{}, err
 	}
-	var articlesResponse article.ArticlesResponse
+	var articlesResponse article.Articles
 	for _, v := range *res {
-		t, err := ptypes.TimestampProto(v.ArticleOverview.LastModified)
 		if err != nil {
 			continue
 		}
-		articlesResponse.Articles = append(articlesResponse.Articles, &article.ArticleResponse{
-			ArticleId:    v.ArticleId,
-			ArticleName:  v.ArticleOverview.Title,
-			Editor:       v.ArticleOverview.Editor,
-			EditorIcon:   v.ArticleOverview.EditorIcon,
-			LastModified: t,
-			Thumbnail:    v.ArticleOverview.Thumbnail,
-			Description:  v.ArticleOverview.Description,
+		articlesResponse.Articles = append(articlesResponse.Articles, &article.Article{
+			ArticleId: v.ArticleId,
+			Overview:  s.toOverview(v.ArticleOverview),
 		})
 	}
 	return &articlesResponse, nil
 }
 
-func (s *server) FindArticleContent(c context.Context, req *article.ArticleRequest) (*article.ArticleResponse, error) {
+func (s *server) FindArticleContent(c context.Context, req *article.Article) (*article.Article, error) {
 	res, err := s.controller.FindArticleContent(domain.ArticleId(req.ArticleId))
 	if err != nil {
-		return &article.ArticleResponse{}, err
+		return &article.Article{}, err
 	}
 	return s.toGRPCArticleResponse(res)
+}
+
+func (s *server) StoreArticle(ctx context.Context, req *article.StoreArticleRequest) (*article.StoreArticleResponse, error) {
+	res, err := s.controller.StoreArticle(domain.Article{
+		ArticleId: domain.ArticleId(req.Article.ArticleId),
+		ArticleOverview: domain.ArticleOverview{
+			Title: req.Article.Overview.ArticleName,
+			Editor: domain.Editor{
+				Id:   int(req.Article.Overview.Editor.EditorId),
+				Name: req.Article.Overview.Editor.EditorName,
+				Icon: req.Article.Overview.Editor.EditorIcon,
+			},
+			LastModified: time.Unix(req.Article.Overview.LastModified.GetSeconds(), int64(req.Article.Overview.LastModified.GetNanos())),
+			Thumbnail:    req.Article.Overview.Thumbnail,
+			Description:  req.Article.Overview.Description,
+		},
+		Content: nil,
+	})
+	if err != nil {
+		return &article.StoreArticleResponse{}, err
+	}
+	return &article.StoreArticleResponse{
+		Message: res.Message,
+	}, nil
 }
 
 func (s *server) StoreEditor(ctx context.Context, req *article.StoreEditorRequest) (*article.StoreEditorResponse, error) {
@@ -85,22 +104,33 @@ func (s *server) StoreEditor(ctx context.Context, req *article.StoreEditorReques
 	}, nil
 }
 
-func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.ArticleResponse, error) {
-	t, err := ptypes.TimestampProto(res.ArticleOverview.LastModified)
+func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.Article, error) {
 	content, err := s.toStruct(res.Content)
 	if err != nil {
-		return &article.ArticleResponse{}, err
+		return &article.Article{}, err
 	}
-	return &article.ArticleResponse{
-		ArticleId:    res.ArticleId,
-		ArticleName:  res.ArticleOverview.Title,
-		Editor:       res.ArticleOverview.Editor,
-		EditorIcon:   res.ArticleOverview.EditorIcon,
-		LastModified: t,
-		Thumbnail:    res.ArticleOverview.Thumbnail,
-		Description:  res.ArticleOverview.Description,
-		Content:      content,
+	return &article.Article{
+		ArticleId: res.ArticleId,
+		Overview:  s.toOverview(res.ArticleOverview),
+		Content:   content,
 	}, nil
+}
+
+func (s *server) toOverview(overview p.ArticleOverview) *article.ArticleOverview {
+	t, err := ptypes.TimestampProto(overview.LastModified)
+	if err != nil {
+		return &article.ArticleOverview{}
+	}
+	return &article.ArticleOverview{
+		ArticleName: overview.Title,
+		Editor: &article.Editor{
+			EditorName: overview.Editor,
+			EditorIcon: overview.EditorIcon,
+		},
+		LastModified: t,
+		Thumbnail:    overview.Thumbnail,
+		Description:  overview.Description,
+	}
 }
 
 func (s *server) toStruct(msg map[string]interface{}) (*structpb.Struct, error) {

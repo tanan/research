@@ -4,6 +4,7 @@
 main: run
 
 run:
+	[[ `docker ps -a | grep web-proxy | wc -l` -eq 1 ]] && docker stop web-proxy && docker rm web-proxy || echo "ok"
 	docker run --name web-proxy -v ${PWD}/proxy.conf:/etc/nginx/nginx.conf:ro -p 8080:8080 -d nginx
 	webdev serve --no-injected-client --hostname=0.0.0.0 web:18080
 

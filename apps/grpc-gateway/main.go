@@ -27,7 +27,7 @@ func run() error {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 	endpoint := fmt.Sprintf("research-api-svc:19003")
-	err := gw.RegisterArticleHandlerFromEndpoint(ctx, mux, endpoint, opts)
+	err := gw.RegisterArticleServiceHandlerFromEndpoint(ctx, mux, endpoint, opts)
 	if err != nil {
 		return err
 	}

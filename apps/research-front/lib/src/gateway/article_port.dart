@@ -32,13 +32,21 @@ extension on ArticlesJson {
 
 extension on ArticleJson {
   Article toArticle() {
+    print(articleId);
+    print(overview);
     return Article(
       ArticleId(articleId),
       _toArticleOverview(),
       content != null ? Contentful(content).asDocument() : null);
   }
-    
-  
+
   ArticleOverview _toArticleOverview() =>
-    ArticleOverview(editor, editorIcon, articleName, lastModified, thumbnail, description);
+    ArticleOverview(
+      overview.editor.editorName,
+      overview.editor.editorIcon,
+      overview.articleName,
+      overview.lastModified,
+      overview.thumbnail,
+      overview.description
+    );
 }

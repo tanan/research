@@ -25,6 +25,13 @@ func (p *GRPCPresenter) FindArticles(articles domain.Articles) (*server.Articles
 	return &res, nil
 }
 
+func (p *GRPCPresenter) StoreArticle(record int, err error) (*server.StoreArticleResponse, error) {
+	if err != nil {
+		return &server.StoreArticleResponse{Message: "ng"}, err
+	}
+	return &server.StoreArticleResponse{Message: "ok"}, nil
+}
+
 func (p *GRPCPresenter) StoreEditor(editor domain.Editor) (*server.StoreEditorResponse, error) {
 	return &server.StoreEditorResponse{
 		EditorId:   editor.Id,
