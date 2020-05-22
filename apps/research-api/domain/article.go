@@ -10,6 +10,9 @@ type Editor struct {
 	Icon string
 }
 
+type ThumbnailUrl string
+type ThumbnailId string
+
 type ArticleOverview struct {
 	Title        string
 	Editor       Editor

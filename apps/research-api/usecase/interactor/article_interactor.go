@@ -8,20 +8,17 @@ import (
 )
 
 type ArticleInteractor struct {
-	//Config            *config.Config
 	OutputPort        server.ArticleOutputPort
 	ArticleRepository repository.ArticleRepository
 	ContentfulApi     contentful.ContentfulApi
 }
 
 func NewArticleInteractor(
-	//config *config.Config,
 	outputPort server.ArticleOutputPort,
 	articleRepository repository.ArticleRepository,
 	contentfulApi contentful.ContentfulApi,
 ) ArticleInteractor {
 	return ArticleInteractor{
-		//Config:            config,
 		OutputPort:        outputPort,
 		ArticleRepository: articleRepository,
 		ContentfulApi:     contentfulApi,
@@ -58,6 +55,11 @@ func (i ArticleInteractor) FindArticleContent(id domain.ArticleId) (*server.Arti
 }
 
 func (i ArticleInteractor) StoreArticle(article domain.Article) (*server.StoreArticleResponse, error) {
+	url, err := i.ContentfulApi.FindThumbnailUrl(domain.ThumbnailId(article.ArticleOverview.Thumbnail))
+	if err != nil {
+		return i.OutputPort.StoreArticle(0, err)
+	}
+	article.ArticleOverview.Thumbnail = string(url)
 	return i.OutputPort.StoreArticle(i.ArticleRepository.StoreArticle(article))
 }
 

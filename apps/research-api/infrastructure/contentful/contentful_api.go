@@ -75,7 +75,7 @@ func (c *ContentfulApi) rawRequest(method, subPath string, params map[string]str
 func (c ContentfulApi) FindById(id domain.ArticleId) (map[string]interface{}, error) {
 	req, err := c.rawRequest("GET", fmt.Sprintf("/entries/%s", id), map[string]string{})
 	if err != nil {
-		return nil, nil
+		return nil, err
 	}
 	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
@@ -87,10 +87,34 @@ func (c ContentfulApi) FindById(id domain.ArticleId) (map[string]interface{}, er
 	return c.toContentMap(m), err
 }
 
+func (c ContentfulApi) FindThumbnailUrl(id domain.ThumbnailId) (domain.ThumbnailUrl, error) {
+	req, err := c.rawRequest("GET", fmt.Sprintf("/environments/master/assets/%s", id), map[string]string{})
+	if err != nil {
+		return "", err
+	}
+	resp, err := c.HTTPClient.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	var m map[string]interface{}
+	err = c.decodeResponse(resp.StatusCode, resp.Body, &m)
+	return c.toThumbnailUrl(m), err
+}
+
 func (c ContentfulApi) toContentMap(res map[string]interface{}) map[string]interface{} {
 	if res == nil {
 		return nil
 	}
 	fields := res["fields"].(map[string]interface{})
 	return fields["content"].(map[string]interface{})
+}
+
+func (c ContentfulApi) toThumbnailUrl(res map[string]interface{}) domain.ThumbnailUrl {
+	if res == nil {
+		return ""
+	}
+	fields := res["fields"].(map[string]interface{})
+	file := fields["file"].(map[string]interface{})
+	return file["url"].(domain.ThumbnailUrl)
 }
