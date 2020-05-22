@@ -116,5 +116,5 @@ func (c ContentfulApi) toThumbnailUrl(res map[string]interface{}) domain.Thumbna
 	}
 	fields := res["fields"].(map[string]interface{})
 	file := fields["file"].(map[string]interface{})
-	return file["url"].(domain.ThumbnailUrl)
+	return domain.ThumbnailUrl(file["url"].(string))
 }
