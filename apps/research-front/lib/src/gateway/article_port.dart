@@ -37,7 +37,7 @@ extension on ArticleJson {
     return Article(
       ArticleId(articleId),
       _toArticleOverview(),
-      content != null ? Contentful(content).asDocument() : null);
+      content != null ? Contentful(content, includes).asDocument() : null);
   }
 
   ArticleOverview _toArticleOverview() =>

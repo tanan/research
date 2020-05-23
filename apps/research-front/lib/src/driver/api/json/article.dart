@@ -17,8 +17,9 @@ class ArticleJson {
   final String articleId;
   final ArticleOverviewJson overview;
   final Map<String, dynamic> content;
+  final Map<String, dynamic> includes;
 
-  ArticleJson(this.articleId, this.overview, this.content);
+  ArticleJson(this.articleId, this.overview, this.content, this.includes);
   factory ArticleJson.fromJson(Map<String, dynamic> json) => _$ArticleJsonFromJson(json);
 }
 

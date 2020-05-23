@@ -4,12 +4,13 @@ import 'package:optional/optional.dart';
 import 'package:research_front/src/domain/document.dart';
 
 class Contentful {
-  final Map<String, dynamic> values;
+  final Map<String, dynamic> fields;
+  final Map<String, dynamic> includes;
 
-  Contentful(this.values);
+  Contentful(this.fields, this.includes);
 
   Document asDocument() =>
-    Document(Element(Tag('div'), _toNodes(values['content'] as List<dynamic>)));
+    Document(Element(Tag('div'), _toNodes(fields['content'] as List<dynamic>)));
 
   Nodes _toNodes(List<dynamic> src) =>
     Nodes(src.map((v) => _toNode(v as Map<String, dynamic>)).where((v) => v.isPresent).map((v) => v.value).toList());
@@ -26,10 +27,16 @@ class Contentful {
       case 'list-item':
         return Optional.of(Element(Tag('li'), _toNodes(value['content'] as List<dynamic>)));
       case 'embedded-asset-block':
-        return Optional.empty();
+        return Optional.of(_toImage(value));
       default:
         return Optional.empty();
     }
+  }
+
+  Node _toImage(Map<String, dynamic> value) {
+    var id = value['data']['target']['sys']['id'];
+    var target = (includes['Asset'] as List<dynamic>).where((v) => v['sys']['id'] == id) as Map<String, dynamic>;
+    return Element(Tag('img'), Nodes([]), attributes: {'src': target['fields']['url']});
   }
 
   Node _getText(Map<String, dynamic> value) {
@@ -50,4 +57,6 @@ class Contentful {
   TextNode _toTextNode(Map<String, dynamic> value) => TextNode(_toEscapeText(value['value']));
 
   String _toEscapeText(String text) => HtmlEscape().convert(text);
+
+
 }

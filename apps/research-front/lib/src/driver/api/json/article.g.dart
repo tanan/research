@@ -28,6 +28,7 @@ ArticleJson _$ArticleJsonFromJson(Map<String, dynamic> json) {
         : ArticleOverviewJson.fromJson(
             json['overview'] as Map<String, dynamic>),
     json['content'] as Map<String, dynamic>,
+    json['includes'] as Map<String, dynamic>,
   );
 }
 
@@ -36,6 +37,7 @@ Map<String, dynamic> _$ArticleJsonToJson(ArticleJson instance) =>
       'articleId': instance.articleId,
       'overview': instance.overview,
       'content': instance.content,
+      'includes': instance.includes,
     };
 
 ArticleOverviewJson _$ArticleOverviewJsonFromJson(Map<String, dynamic> json) {
