@@ -35,8 +35,8 @@ class Contentful {
 
   Node _toImage(Map<String, dynamic> value) {
     var id = value['data']['target']['sys']['id'];
-    var target = (includes['Asset'] as List<dynamic>).where((v) => v['sys']['id'] == id) as Map<String, dynamic>;
-    return Element(Tag('img'), Nodes([]), attributes: {'src': target['fields']['url']});
+    var target = (includes['Asset'] as List<dynamic>).where((v) => v['sys']['id'] == id);
+    return Element(Tag('img'), Nodes([]), attributes: {'src': ((target.first) as Map<String, dynamic>)['fields']['file']['url'].toString()});
   }
 
   Node _getText(Map<String, dynamic> value) {
