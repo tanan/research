@@ -25,6 +25,8 @@ class Contentful {
         return Optional.of(Element(Tag('ul'), _toNodes(value['content'] as List<dynamic>)));
       case 'list-item':
         return Optional.of(Element(Tag('li'), _toNodes(value['content'] as List<dynamic>)));
+      case 'embedded-asset-block':
+        return Optional.empty();
       default:
         return Optional.empty();
     }

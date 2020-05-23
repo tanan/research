@@ -44,6 +44,7 @@ message Article {
     string articleId = 1;
     ArticleOverview overview = 2;
     google.protobuf.Struct content = 7;
+    google.protobuf.Struct includes = 8;
 }
 
 message ArticleOverview {

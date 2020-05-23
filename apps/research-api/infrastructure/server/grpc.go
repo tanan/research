@@ -79,7 +79,8 @@ func (s *server) StoreArticle(ctx context.Context, req *article.StoreArticleRequ
 			Thumbnail:    req.Article.Overview.Thumbnail,
 			Description:  req.Article.Overview.Description,
 		},
-		Content: nil,
+		Content:  nil,
+		Includes: nil,
 	})
 	if err != nil {
 		return &article.StoreArticleResponse{}, err
@@ -109,6 +110,7 @@ func (s *server) StoreEditor(ctx context.Context, req *article.StoreEditorReques
 
 func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.Article, error) {
 	content, err := s.toStruct(res.Content)
+	includes, err := s.toStruct(res.Includes)
 	if err != nil {
 		return &article.Article{}, err
 	}
@@ -116,6 +118,7 @@ func (s *server) toGRPCArticleResponse(res *p.ArticleResponse) (*article.Article
 		ArticleId: res.ArticleId,
 		Overview:  s.toOverview(res.ArticleOverview),
 		Content:   content,
+		Includes:  includes,
 	}, nil
 }
 
@@ -150,6 +153,5 @@ func (s *server) toStruct(msg map[string]interface{}) (*structpb.Struct, error) 
 	if err = jsonpb.Unmarshal(reader, pbs); err != nil {
 		return nil, err
 	}
-
 	return pbs, nil
 }

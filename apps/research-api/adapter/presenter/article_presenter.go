@@ -10,6 +10,7 @@ func (p *GRPCPresenter) FindArticle(article domain.Article) (*server.ArticleResp
 		ArticleId:       string(article.ArticleId),
 		ArticleOverview: p.toArticleOverview(article.ArticleOverview),
 		Content:         article.Content,
+		Includes:        article.Includes,
 	}, nil
 }
 
@@ -20,6 +21,7 @@ func (p *GRPCPresenter) FindArticles(articles domain.Articles) (*server.Articles
 			ArticleId:       string(v.ArticleId),
 			ArticleOverview: p.toArticleOverview(v.ArticleOverview),
 			Content:         v.Content,
+			Includes:        v.Includes,
 		})
 	}
 	return &res, nil

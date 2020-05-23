@@ -72,19 +72,19 @@ func (c *ContentfulApi) rawRequest(method, subPath string, params map[string]str
 	return request, err
 }
 
-func (c ContentfulApi) FindById(id domain.ArticleId) (map[string]interface{}, error) {
+func (c ContentfulApi) FindById(id domain.ArticleId) (fields map[string]interface{}, includes map[string]interface{}, err error) {
 	req, err := c.rawRequest("GET", fmt.Sprintf("/entries/%s", id), map[string]string{})
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
-		return nil, nil
+		return nil, nil, nil
 	}
 	defer resp.Body.Close()
 	var m map[string]interface{}
 	err = c.decodeResponse(resp.StatusCode, resp.Body, &m)
-	return c.toContentMap(m), err
+	return c.toContentMap(m), c.toIncludesMap(m), err
 }
 
 func (c ContentfulApi) FindThumbnailUrl(id domain.ThumbnailId) (domain.ThumbnailUrl, error) {
@@ -106,8 +106,15 @@ func (c ContentfulApi) toContentMap(res map[string]interface{}) map[string]inter
 	if res == nil {
 		return nil
 	}
-	fields := res["fields"].(map[string]interface{})
+	fields := res["items"].([]interface{})[0].(map[string]interface{})["fields"].(map[string]interface{})
 	return fields["content"].(map[string]interface{})
+}
+
+func (c ContentfulApi) toIncludesMap(res map[string]interface{}) map[string]interface{} {
+	if res == nil {
+		return nil
+	}
+	return res["includes"].(map[string]interface{})
 }
 
 func (c ContentfulApi) toThumbnailUrl(res map[string]interface{}) domain.ThumbnailUrl {

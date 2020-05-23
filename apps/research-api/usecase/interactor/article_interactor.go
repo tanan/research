@@ -46,11 +46,12 @@ func (i ArticleInteractor) FindArticleContent(id domain.ArticleId) (*server.Arti
 	if err != nil {
 		return nil, err
 	}
-	content, err := i.ContentfulApi.FindById(id)
+	content, includes, err := i.ContentfulApi.FindById(id)
 	if err != nil {
 		return nil, err
 	}
 	article.Content = content
+	article.Includes = includes
 	return i.OutputPort.FindArticle(article)
 }
 

@@ -26,6 +26,7 @@ type ArticleResponse struct {
 	ArticleId       string
 	ArticleOverview ArticleOverview
 	Content         map[string]interface{}
+	Includes        map[string]interface{}
 }
 
 type StoreArticleResponse struct {
