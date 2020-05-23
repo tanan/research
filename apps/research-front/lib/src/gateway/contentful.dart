@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:optional/optional.dart';
 import 'package:research_front/src/domain/document.dart';
 
@@ -43,5 +45,7 @@ class Contentful {
 
   Element _toCode(Map<String, dynamic> value) => Element(Tag('code'), Nodes([_toTextNode(value)]));
 
-  TextNode _toTextNode(Map<String, dynamic> value) => TextNode(value['value']);
+  TextNode _toTextNode(Map<String, dynamic> value) => TextNode(_toEscapeText(value['value']));
+
+  String _toEscapeText(String text) => HtmlEscape().convert(text);
 }
