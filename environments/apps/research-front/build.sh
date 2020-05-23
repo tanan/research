@@ -21,7 +21,7 @@ copy() {
 }
 
 build() {
-    docker build --compress --pull -f ${cwd}/Dockerfile -t ${registry}/${name}:${tag} .
+    docker build -f ${cwd}/Dockerfile -t ${registry}/${name}:${tag} .
     docker tag ${registry}/${name}:${tag} ${registry}/${name}:latest
 }
 
