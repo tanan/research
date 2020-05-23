@@ -1,8 +1,4 @@
 <div class="search" [class.focused]="focused">
   <img class="search-icon" src="images/ic_search.svg" *ngIf="!loading">
-  <input #query type="text" placeholder="キーワードで検索" [value]="searchQuery" (focus)="onFocus()" (blur)="onBlur()">
-  <div class="list" [class.has-list]="hasList">
-    <div class="suggests">  
-    </div>
-  </div>
+  <input #query type="text" placeholder="記事タイトル、カテゴリなどを検索" [value]="searchQuery" (focus)="onFocus()" (blur)="onBlur()">
 </div>

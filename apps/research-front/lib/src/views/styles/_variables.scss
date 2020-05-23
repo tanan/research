@@ -1,35 +1,28 @@
 @charset 'UTF-8';
 
 // colors
-$color-gray: #a9a9a9;
 $color-black: #454a4d;
 $color-white: #fff;
 $color-light-gray: #f0f2f2;
-$color-accent: #9bd5de;
 
-$color-ico-gray: #bbbebf;
-$color-line-gray: #e1e2e3;
+$color-background-gray: #f1f1f1;
+$color-title-gray: #4d4d4d;
+$color-border-gray: #c4c4c4;
 
 $color-font-gray: #898b8c;
 $color-font-black: #454a4d;
-$color-border-gray: #eff0f0;
 
+$color-accent: #fff;
+
+$color-link: #50a2f5;
 
 // sizes
 
-$slide-width: 720px;
-$slide-height: 545px;
+$slide-width: 1440px;
+$slide-height: 1024px;
 
 @mixin clear-both {
   display: block;
   content: '';
   clear: both;
 }
-
-// old
-
-// colors
-$link-color: #50a2f5;
-
-
-
