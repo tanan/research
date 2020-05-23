@@ -74,8 +74,8 @@ func (c *ContentfulApi) rawRequest(method, subPath string, params map[string]str
 
 func (c ContentfulApi) FindById(id domain.ArticleId) (fields map[string]interface{}, includes map[string]interface{}, err error) {
 	req, err := c.rawRequest("GET", "/entries", map[string]string{
-		"includes": "2",
-		"sys.id":   string(id),
+		"include": "2",
+		"sys.id":  string(id),
 	})
 	if err != nil {
 		return nil, nil, err
