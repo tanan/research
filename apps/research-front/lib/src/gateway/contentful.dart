@@ -28,10 +28,15 @@ class Contentful {
         return Optional.of(Element(Tag('li'), _toNodes(value['content'] as List<dynamic>)));
       case 'embedded-asset-block':
         return Optional.of(_toImage(value));
+      case 'hyperlink':
+        return Optional.of(_toHyperlink(value));
       default:
         return Optional.empty();
     }
   }
+
+  Node _toHyperlink(Map<String, dynamic> value) =>
+    Element(Tag('a'), _toNodes(value['content'] as List<dynamic>), attributes: {'href': value['data']['uri']});
 
   Node _toImage(Map<String, dynamic> value) {
     var id = value['data']['target']['sys']['id'];
