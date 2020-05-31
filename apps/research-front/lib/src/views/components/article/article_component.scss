@@ -24,31 +24,33 @@
       font-size: 32px;
       color: rgba(0, 0, 0, 0.7);
     }
-
-    .announcement-date {
-      text-align: right;
-      margin-right: 8px;
-      margin-top: 12px;
-      color: rgba(0, 0, 0, 0.54);
-    }
     .editor {
       position: relative;
-      display: block;
+      display: flex;
       width: 16%;
-      margin: 4px 0 0 auto;
+      margin: 0 0 0 auto;
       color: rgba(0, 0, 0, 0.54);
 
       .name {
         position: absolute;
-        top: 4px;
-        left: 32px;
+        top: 0px;
+        line-height: 1;
+        font-size: 14px;
+      }
+
+      .announcement-date {
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.54);
       }
 
       .icon {
-        position: absolute;
-        top: 2px;
-        width: 24px;
-        height: 24px;
+        border-radius: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        margin-right: 8px;
       }
     }
   }
