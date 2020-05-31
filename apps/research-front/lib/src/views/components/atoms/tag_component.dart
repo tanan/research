@@ -9,5 +9,5 @@ import 'package:angular/angular.dart';
 )
 class TagComponent {
   @Input()
-  String tag;
+  String name;
 }
