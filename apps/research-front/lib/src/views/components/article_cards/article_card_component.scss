@@ -35,40 +35,37 @@
       font-size: 20px;
     }
 
-    .announcement-date {
-      width: 40%;
-      // margin: 0 0 0 auto;
-      margin-top: 4px;
-      margin-left: 4px;
-      font-size: 14px;
-      color: $color-font-black;
-    }
     .editor {
       position: relative;
-      display: block;
-      width: 40%;
-      height: 32px;
-      font-size: 14px;
-      margin-top: 8px;
-      color: $color-font-black;
+      display: flex;
+      color: rgba(0, 0, 0, 0.54);
 
       .name {
         position: absolute;
-        top: 6px;
-        left: 40px;
+        top: 0px;
+        line-height: 1;
+        font-size: 14px;
+      }
+
+      .announcement-date {
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.54);
       }
 
       .icon {
-        position: absolute;
-        width: 32px;
-        height: 32px;
-        border: 1px solid $color-border-gray;
-        border-radius: 50%;
+        border-radius: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        margin-right: 8px;
       }
     }
 
     .description {
       margin-top: 8px;
+      font-size: 14px;
     }
   }
 }

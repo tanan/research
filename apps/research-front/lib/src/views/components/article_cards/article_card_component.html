@@ -7,9 +7,11 @@
       <div class="title">{{article.overview.title}}</div>
       <div class="editor">
         <img class="icon" src="{{ article.overview.editorIcon }}">
-        <span class="name">{{ article.overview.editor }}</span>
+        <div class="info">
+          <div class="name">{{ article.overview.editor }}</div>
+          <span class="announcement-date">{{ article.overview.lastModified }}</span>
+        </div>
       </div>
-      <div class="announcement-date">{{article.overview.lastModified}}</div>
       <div class="description">{{article.overview.description}}</div>
     </div>
   </a>

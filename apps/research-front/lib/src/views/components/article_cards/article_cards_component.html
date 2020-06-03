@@ -1,4 +1,8 @@
-<div class="cards-container">
-  <article-card *ngFor="let article of articles" [article]="article"></article-card>
-  <!-- <article-card [article]="article"></article-card> -->
+<div class="card-list wrapper">
+  <div class="cards-container">
+    <article-card *ngFor="let article of articles" [article]="article"></article-card>
+  </div>
+</div>
+<div class="sidenav">
+  <sidenav></sidenav>
 </div>

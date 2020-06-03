@@ -1,6 +1,5 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:research_front/src/usecase/system_usecase.dart';
 import 'package:research_front/src/views/routes.dart';
 
 @Component(
@@ -18,16 +17,16 @@ import 'package:research_front/src/views/routes.dart';
 )
 class AppComponent implements OnInit {
 
-  final SystemUsecase _systemUsecase;
+  // final SystemUsecase _systemUsecase;
   final Router _router;
 
-  AppComponent(this._systemUsecase, this._router);
+  AppComponent(this._router);
 
   @override
   void ngOnInit() {
-    _systemUsecase.registerErrorHandler((error) async {
-      _systemUsecase.rememberTargetRoute();
-      await _router.navigate(RoutePaths.dashboard.toUrl());
-    });
+    // _systemUsecase.registerErrorHandler((error) async {
+    //   _systemUsecase.rememberTargetRoute();
+    //   await _router.navigate(RoutePaths.dashboard.toUrl());
+    // });
   }
 }

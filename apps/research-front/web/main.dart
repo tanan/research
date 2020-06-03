@@ -8,10 +8,7 @@ import 'package:research_front/src/gateway/article_port.dart';
 import 'package:research_front/src/presenter/article_presenter.dart';
 import 'package:research_front/src/usecase/article_usecase.dart';
 import 'package:research_front/src/views/app_component.template.dart' as ng;
-import 'package:research_front/src/gateway/system_port.dart';
 import 'package:research_front/src/presenter/system_presenter.dart';
-import 'package:research_front/src/usecase/system_usecase.dart';
-import 'package:research_front/src/driver/browser/environment.dart' as env;
 import 'package:research_front/src/views/state/article_viewstate.dart';
 import 'package:research_front/src/views/state/system_viewstate.dart';
 import 'package:http/browser_client.dart';
@@ -20,15 +17,12 @@ import 'main.template.dart' as self;
 
 @GenerateInjector([
   ClassProvider(HttpErrorHandler),
-  ClassProvider(SystemUsecase),
-  ClassProvider(SystemPort, useClass: SystemGateway),
   ClassProvider(SystemPresenter),
   ClassProvider(SystemViewState),
   ClassProvider(ArticleUsecase),
   ClassProvider(ArticlePort, useClass: ArticleGateway),
   ClassProvider(ArticlePresenter),
   ClassProvider(ArticleViewState),
-  ClassProvider(env.Location, useClass: env.HashBaseLocation),
   ClassProvider(ApiClient),
   ClassProvider(BrowserClient),
   ClassProvider(ResearchApiURL),

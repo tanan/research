@@ -2,10 +2,21 @@
 
 @import 'package:research_front/src/views/styles/variables';
 
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+
+.card-list {
+  display: flex;
+  justify-content: space-between;
+}
+
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 74%;
 
   .card {
 
@@ -28,4 +39,8 @@
       padding: 12px;
     }
   }
+}
+
+.sidenav {
+  width: 20%;
 }
