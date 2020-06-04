@@ -2,6 +2,7 @@
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:research_front/src/views/components/article_cards/article_cards_component.dart';
+import 'package:research_front/src/views/components/sidenav/sidenav_component.dart';
 import 'package:research_front/src/views/layouts/header.dart';
 
 @Component(
@@ -13,6 +14,7 @@ import 'package:research_front/src/views/layouts/header.dart';
     materialInputDirectives,
     ArticleCardsComponent,
     HeaderComponent,
+    SidenavComponent,
   ],
   providers: [],
 )
