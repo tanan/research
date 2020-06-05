@@ -32,8 +32,6 @@ extension on ArticlesJson {
 
 extension on ArticleJson {
   Article toArticle() {
-    print(articleId);
-    print(overview);
     return Article(
       ArticleId(articleId),
       _toArticleOverview(),
