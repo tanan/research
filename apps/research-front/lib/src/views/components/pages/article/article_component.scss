@@ -2,21 +2,15 @@
 
 @import 'package:research_front/src/views/styles/variables';
 
-.wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 4%;
-}
-
 .article-contents {
+  width: 84%;
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 0 auto;
 
   .article-info {
     position: relative;
-    padding-top: 4px;
+    padding-top: 64px;
     margin-bottom: 40px;
 
     .title {
@@ -56,8 +50,9 @@
   }
 }
 
-article {
-  width: 74%;
+.article-tag {
+  padding: 0 32px;
+  margin:64px 0;
 }
 
 article-tag {
@@ -65,6 +60,7 @@ article-tag {
   margin-bottom: 16px;
 }
 
-.sidenav {
+sidenav {
   width: 20%;
+  margin-top: 128px;
 }

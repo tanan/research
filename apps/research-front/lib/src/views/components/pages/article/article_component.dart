@@ -4,10 +4,10 @@ import 'package:angular_components/angular_components.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:research_front/src/domain/article.dart' as d;
 import 'package:research_front/src/usecase/article_usecase.dart';
-import 'package:research_front/src/views/components/article/article_content_component.dart';
 import 'package:research_front/src/views/components/atoms/tag_component.dart';
-import 'package:research_front/src/views/components/sidenav/sidenav_component.dart';
-import 'package:research_front/src/views/layouts/header.dart';
+import 'package:research_front/src/views/components/organisms/article/article_content_component.dart';
+import 'package:research_front/src/views/components/organisms/header/header_component.dart';
+import 'package:research_front/src/views/components/organisms/sidenav/sidenav_component.dart';
 import 'package:research_front/src/views/state/article_viewstate.dart';
 
 @Component(

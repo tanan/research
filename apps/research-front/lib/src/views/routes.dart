@@ -1,7 +1,7 @@
 
 import 'package:angular_router/angular_router.dart';
-import 'package:research_front/src/views/components/dashboard/dashboard_component.template.dart' as dashboard;
-import 'package:research_front/src/views/components/article/article_component.template.dart' as a;
+import 'package:research_front/src/views/components/pages/dashboard/dashboard_component.template.dart' as dashboard;
+import 'package:research_front/src/views/components/pages/article/article_component.template.dart' as a;
 
 class RoutePaths {
   static final dashboard = RoutePath(path: 'dashboard');

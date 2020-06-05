@@ -1,5 +1,5 @@
 <header></header>
-<div class="article-contents wrapper">
+<div class="article-contents">
   <article>
     <div class="article-info">
       <h2 class="title">{{ article.overview.title }}</h2>
@@ -13,12 +13,12 @@
       <!-- <p class="category">{{ article.overview.category }}</p> -->
     </div>
     <article-content [content]="article.content"></article-content>
-    <article-tag name="envoy proxy"></article-tag>
-    <article-tag name="kubernetes"></article-tag>
+    <div class="article-tag">
+      <article-tag name="envoy proxy"></article-tag>
+      <article-tag name="kubernetes"></article-tag>
+    </div>
   </article>
-  <div class="sidenav">
-    <sidenav></sidenav>
-  </div>
+  <sidenav></sidenav>
   <!-- <div class="ad">
     <img src="images/banner.jpg" alt="新メニュー登場">
   </div> -->
