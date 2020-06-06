@@ -1,4 +1,4 @@
-package com.tanan.researchserver.rest.resources
+package com.tanan.researchserver.rest
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -37,3 +37,14 @@ create table "research"."article_tag" (
   ,tag text not null
   ,foreign key (article_id) references research.article(id)
 );
+
+\c "history" dolphin;
+
+create schema history;
+
+create table "history"."user_history_log" (
+  id serial primary key
+  ,user_id text not null
+  ,action_type int not null
+  ,page_id text
+)
