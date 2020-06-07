@@ -44,7 +44,15 @@ create schema history;
 
 create table "history"."user_history_log" (
   id serial primary key
+  ,dt timestamp not null
   ,user_id text not null
   ,action_type int not null
   ,page_id text
+  ,session text
+  ,ip text
+  ,host text
+  ,path text
+  ,query text
+  ,referer text
+  ,ua text
 )
