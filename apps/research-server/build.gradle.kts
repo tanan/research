@@ -14,44 +14,54 @@ group = "com.tanan"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-repositories {
-	mavenCentral()
+allprojects {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
 }
+
+subprojects {
+	apply(plugin = "kotlin")
+	apply(plugin = "java")
+	apply(plugin = "application")
+}
+
+//
+//springBoot {
+//	mainClassName = "com.tanan.researchserver"
+//}
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	}
+//	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
+//tasks.withType<Test> {
+//	useJUnitPlatform()
+//}
+//
+//tasks.withType<KotlinCompile> {
+//	kotlinOptions {
+//		freeCompilerArgs = listOf("-Xjsr305=strict")
+//		jvmTarget = "1.8"
+//	}
+//}
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
-	}
-}
 
-
-tasks.withType<Jar> {
-	manifest {
-		attributes["Main-Class"] = "com.tanan.researchserver"
-	}
-	val version = "1.0"
-	archiveName = "research-server.jar"
-}
-
-tasks {
-	docker {
-		name = "research"
-		files(jar.name)
-		setDockerfile(file("$projectDir/Dockerfile"))
-	}
-}
+//tasks.withType<Jar> {
+//	manifest {
+//		attributes["Main-Class"] = "com.tanan.researchserver"
+//	}
+//	val version = "1.0"
+//	archiveName = "research-server.jar"
+//}
+//
+//tasks {
+//	docker {
+//		name = "history-log"
+//		files(jar.name)
+//		setDockerfile(file("$projectDir/Dockerfile"))
+//	}
+//}

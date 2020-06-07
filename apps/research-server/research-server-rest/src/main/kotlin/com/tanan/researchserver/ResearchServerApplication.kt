@@ -20,5 +20,6 @@ class WebConfig: WebFluxConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080")
                 .allowedOrigins("http://research.weeekend.work")
+                .allowedOrigins("http://rt.weeekend.work")
     }
 }

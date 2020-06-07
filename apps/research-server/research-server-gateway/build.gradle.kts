@@ -5,21 +5,13 @@ plugins {
 	id("io.spring.dependency-management")
 	kotlin("jvm")
 	kotlin("plugin.spring")
+	java
+	application
 }
 
-group = "com.tanan"
+group = "com.tanan.researchserver"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
-
-repositories {
-	mavenCentral()
-}
-
-tasks {
-	jar {
-		enabled = true
-	}
-}
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
@@ -31,18 +23,19 @@ dependencies {
 	implementation(project(":research-server-domain"))
 	implementation(project(":research-server-driver"))
 	implementation(project(":research-server-port"))
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	}
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
 }
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
+		jvmTarget = "11"
 	}
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+	 manifest {
+		 attributes["Main-Class"] = "com.tanan.researchserver.ResearchServerRestApplication"
+	 }
+	 val version = "1.0"
+	 archiveName = "research-server.jar"
 }

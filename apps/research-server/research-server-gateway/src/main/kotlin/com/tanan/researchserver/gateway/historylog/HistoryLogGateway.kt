@@ -9,6 +9,18 @@ import org.springframework.stereotype.Component
 @Component
 class HistoryLogGateway(private val userHistoryLogDriver: UserHistoryLogDriver): HistoryLogPort {
     override fun storeUserHistory(userAction: UserAction) {
-        userHistoryLogDriver.save(UserHistoryLog(userId = userAction.id.value, actionType = userAction.action.id, pageId = userAction.pageId))
+        userHistoryLogDriver.save(UserHistoryLog(
+                dt = userAction.date,
+                userId = userAction.id.value,
+                actionType = userAction.action.id,
+                pageId = userAction.pageId,
+                session = userAction.requestInfo.session,
+                ip = userAction.requestInfo.ipAddress,
+                host = userAction.requestInfo.host,
+                path = userAction.requestInfo.path,
+                query = userAction.requestInfo.query,
+                referer = userAction.requestInfo.referer,
+                ua = userAction.requestInfo.userAgent
+        ))
     }
 }
